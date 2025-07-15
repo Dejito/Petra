@@ -1,13 +1,22 @@
 package com.mobile.petra.di
 
-import org.koin.core.context.startKoin
-import org.koin.dsl.KoinAppDeclaration
-import org.koin.dsl.includes
-
-
-fun initKoin(config : KoinAppDeclaration? = null){
-    startKoin {
-        includes(config)
-//        modules(sharedKoinModules)
-    }
-}
+//val sharedKoinModules = listOf(
+//    airtimeModule,
+//    cardRequestModule,
+//    cardActivationModule,
+//    commissionBalanceModule,
+//    verifyEmailModule,
+//    kegowModule,
+//    networkModule,
+//    cardManagementModule,
+//    cardPickupModule,
+//    userModule,
+//    authModule,
+//    transactionModule,
+//    locationModule,
+//    transferModule,
+//    tierUpgradeModule,
+//    cableModule,
+//    beneficiaryModule,
+//    billModule
+//)
