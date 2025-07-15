@@ -66,7 +66,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.navigation.compose)
 
-    //viewmodel, ktor, http
+    //viewmodel, ktor, http, koin
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.android)
@@ -74,6 +74,11 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.ktor.client.logging)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.android)
+    implementation(libs.koin.core)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.koin.compose.viewmodel.v401)
 
     //test
     testImplementation(libs.junit)

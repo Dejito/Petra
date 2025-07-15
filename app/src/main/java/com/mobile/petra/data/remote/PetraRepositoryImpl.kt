@@ -5,6 +5,10 @@ import io.ktor.client.network.sockets.SocketTimeoutException
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.client.request.header
 import io.ktor.client.request.headers
 import io.ktor.client.request.parameter
@@ -39,17 +43,23 @@ class PetraRepositoryImpl: PetraRepository {
                 headers {
                 }
             }
-//            install(Logging) {
-//                logger = Logger.SIMPLE
-//                level = LogLevel.ALL
-//            }
+            install(Logging) {
+                logger = Logger.SIMPLE
+                level = LogLevel.ALL
+            }
             install(HttpTimeout) {
                 requestTimeoutMillis = 60000
                 connectTimeoutMillis = 60000
                 socketTimeoutMillis = 60000
             }
             install(ContentNegotiation) {
-                json(json)
+                json(Json {
+                prettyPrint = true
+                isLenient = true
+                ignoreUnknownKeys = true
+
+                }
+                )
             }
         }
     }
