@@ -12,22 +12,40 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
+import com.mobile.petra.presentation.view.EndpointTest
+import com.mobile.petra.presentation.viewmodel.product.ProductViewModel
 import com.mobile.petra.ui.theme.PetraTheme
 
 class MainActivity : ComponentActivity() {
+
+//    private lateinit var productVm: ProductViewModel
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+//        productVm = ViewModelProvider(this)[ProductViewModel::class.java]
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             PetraTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                            .clickable {
-
-                            }
-                    )
+                Scaffold(modifier = Modifier.fillMaxSize()) { _ ->
+                    EndpointTest()
+//                    Greeting(
+//                        name = "Android",
+//                        modifier = Modifier.padding(innerPadding)
+//                            .clickable {
+//                                productVm.fetchProducts(
+//                                    onSuccess = {
+//                                        println("success resp......$it")
+//                                    },
+//                                    onFailure = {
+//                                        println("error resp......$it")
+//                                    }
+//                                )
+//                            }
+//                    )
                 }
             }
         }
