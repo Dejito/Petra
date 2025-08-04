@@ -38,13 +38,8 @@ data class ApiData(
 )
 
 class PetraRepositoryImpl : PetraRepository {
-    private var encryptionKeyValue: String = ""
-//    private val firestore: FirebaseFirestore by lazy {
-//        Firebase.firestore
-//    }
 
     private var baseUrl = "https://dummyjson.com/"
-//    private val geoLocator: Geolocator = Geolocator.mobile()
 
     private val json = Json {
         ignoreUnknownKeys = true
@@ -230,7 +225,6 @@ class PetraRepositoryImpl : PetraRepository {
             onSuccess = onSuccess,
             onFailure = onFailure
         )
-        TODO("Not yet implemented")
     }
 
 
