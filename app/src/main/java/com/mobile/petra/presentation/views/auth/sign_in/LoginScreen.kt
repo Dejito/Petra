@@ -1,8 +1,10 @@
 package com.mobile.petra.presentation.views.auth.sign_in
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -15,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.mobile.petra.R
 import com.mobile.petra.presentation.views.components.LoginScreenTextField
+import com.mobile.petra.presentation.views.components.PetraBottomButton
 import com.mobile.petra.presentation.views.components.PetraOutlinedTextField
 import com.mobile.petra.presentation.views.components.TitleText
 
@@ -63,6 +66,23 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                 onClickedForgotPin = {},
                 passwordError = ""
             )
+
+            PetraBottomButton(
+                text = "Login",
+                modifier = Modifier.padding(vertical = 24.dp)
+            )
+
+            Row {
+                TitleText(text = "You're new here? ")
+                TitleText(
+                    text = "Sign Up",
+                    fontSize = 15,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.clickable {
+
+                    },
+                )
+            }
 
         }
     }

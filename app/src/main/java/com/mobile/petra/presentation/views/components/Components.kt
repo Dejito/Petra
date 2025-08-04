@@ -22,6 +22,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -309,6 +311,7 @@ internal fun LoginScreenTextField(
                 unfocusedContainerColor = Color.White,
                 disabledTextColor = Color.Black,
             ),
+            bottomPadding = 20
         )
 
 //        TitleText(
@@ -422,4 +425,30 @@ internal fun LoginScreenTextField(
 
     }
 
+}
+
+@Composable
+fun PetraBottomButton(
+    text: String,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}, enabled: Boolean = true,
+) {
+    Button(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(53.dp),
+        onClick = { onClick() },
+        enabled = enabled,
+
+        colors = ButtonDefaults.buttonColors().copy(
+            disabledContainerColor = Color(0xFFB2D5C7),
+            disabledContentColor = Color(0xFFE6E6E6),
+            containerColor = MaterialTheme.colorScheme.primary
+        )
+    ) {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.titleMedium
+        )
+    }
 }
