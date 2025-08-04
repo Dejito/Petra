@@ -1,6 +1,7 @@
 package com.mobile.petra.data.remote
 
-import com.mobile.petra.data.model.response.ProductResponse
+import ProductResponse
+
 
 interface PetraRepository {
 

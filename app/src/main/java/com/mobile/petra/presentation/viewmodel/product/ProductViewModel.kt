@@ -1,8 +1,8 @@
 package com.mobile.petra.presentation.viewmodel.product
 
+import ProductResponse
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mobile.petra.data.model.response.ProductResponse
 import com.mobile.petra.data.remote.PetraRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

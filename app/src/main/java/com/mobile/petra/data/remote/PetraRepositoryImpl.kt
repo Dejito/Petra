@@ -1,6 +1,6 @@
 package com.mobile.petra.data.remote
 
-import com.mobile.petra.data.model.response.ProductResponse
+import ProductResponse
 import com.mobile.petra.data.model.response.ResponseMessage
 import io.ktor.client.HttpClient
 import io.ktor.client.network.sockets.SocketTimeoutException
@@ -24,8 +24,6 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.content.TextContent
 import io.ktor.serialization.kotlinx.json.json
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
@@ -67,7 +65,7 @@ class PetraRepositoryImpl : PetraRepository {
         }
     }
 
-    private suspend fun ensureHttpClientInitialized() {
+    private fun ensureHttpClientInitialized() {
         if (!this::httpClient.isInitialized) {
             initHttpClient()
         }
@@ -113,6 +111,7 @@ class PetraRepositoryImpl : PetraRepository {
             onFailure(internetErrorMessage())
         } catch (e: Exception) {
             e.printStackTrace()
+            onFailure(e.message.toString())
         }
     }
 
