@@ -13,12 +13,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.mobile.petra.R
+import com.mobile.petra.presentation.views.components.PetraAppBar
+import com.mobile.petra.router.Navigator
 
 @Composable
-fun SignUpScreen(){
-    Scaffold { paddingValues ->
+fun SignUpScreen(navigator: Navigator){
+    Scaffold(
+        topBar = { PetraAppBar(title = "Sign Up", onClick = { navigator.navigateUp() }) }
+    ) { paddingValues ->
         Column(
-            modifier = Modifier.padding(paddingValues)
+            modifier = Modifier
+                .padding(paddingValues)
                 .padding(16.dp)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,

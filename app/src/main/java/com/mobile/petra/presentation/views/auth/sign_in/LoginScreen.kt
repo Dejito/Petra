@@ -20,9 +20,10 @@ import com.mobile.petra.presentation.views.components.LoginScreenTextField
 import com.mobile.petra.presentation.views.components.PetraBottomButton
 import com.mobile.petra.presentation.views.components.PetraOutlinedTextField
 import com.mobile.petra.presentation.views.components.TitleText
+import com.mobile.petra.router.Navigator
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
+fun LoginScreen(navigator: Navigator, modifier: Modifier = Modifier) {
     Scaffold { paddingValues ->
         Column(
             modifier = modifier
@@ -79,7 +80,7 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                     fontSize = 15,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.clickable {
-
+                        navigator.navToSignUp()
                     },
                 )
             }

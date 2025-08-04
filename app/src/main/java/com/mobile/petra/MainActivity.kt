@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.mobile.petra.presentation.views.EndpointTest
 import com.mobile.petra.presentation.views.auth.sign_in.LoginScreen
+import com.mobile.petra.router.AppNavigators
 import com.mobile.petra.ui.theme.PetraTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,9 +29,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PetraTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LoginScreen(modifier = Modifier.padding(innerPadding))
-                }
+//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    AppNavigators()
+//                }
             }
         }
     }

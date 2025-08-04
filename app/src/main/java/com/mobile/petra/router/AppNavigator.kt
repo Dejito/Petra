@@ -1,22 +1,12 @@
 package com.mobile.petra.router
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.os.Build
-import androidx.annotation.OptIn
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import androidx.navigation.navDeepLink
-import kotlinx.coroutines.delay
+import com.mobile.petra.presentation.views.auth.sign_in.LoginScreen
+import com.mobile.petra.presentation.views.auth.sign_up.SignUpScreen
 
 @SuppressLint("NewApi")
 @Composable
@@ -27,6 +17,18 @@ fun AppNavigators() {
 
 
     NavHost(navController, startDestination = Routes.Home.route) {
+
+        composable(Routes.Home.route) {
+            LoginScreen(navigation)
+        }
+
+        composable(Routes.SignIn.route) {
+            LoginScreen(navigation)
+        }
+
+        composable(Routes.SignUp.route) {
+            SignUpScreen(navigation)
+        }
 
 //        if (appInBackground == 1) {
 //            navigation.navToWelcomeScreen()
