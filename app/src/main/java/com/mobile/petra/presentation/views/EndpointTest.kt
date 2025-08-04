@@ -1,4 +1,4 @@
-package com.mobile.petra.presentation.view
+package com.mobile.petra.presentation.views
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
