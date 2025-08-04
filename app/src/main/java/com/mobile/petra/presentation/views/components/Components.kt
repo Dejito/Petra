@@ -69,7 +69,7 @@ import java.util.Locale
 fun PetraAppBar(
     enabledBackButton: Boolean = true,
     title: String, elevation: Int = 5,
-    backgroundColor: Color = Color.White,
+    backgroundColor: Color = Color.Transparent,
     textColor: Color = Color.Black,
     tint: Color = Color.Black,
     onClick: () -> Unit = {},
@@ -86,8 +86,9 @@ fun PetraAppBar(
         ),
         title = {
             Text(
-                title, textAlign = TextAlign.Center,
+                text = title, textAlign = TextAlign.Center,
                 color = textColor,
+                fontSize = 18.sp,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(end = padding.dp)
