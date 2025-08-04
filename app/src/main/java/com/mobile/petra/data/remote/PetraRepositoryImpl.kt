@@ -30,14 +30,6 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 
-@Serializable
-data class ApiData(
-    @SerialName(value = "api_key")
-    val apiKey: String = "",
-    @SerialName(value = "encryption_key")
-    val encryptionKey: String? = null
-)
-
 class PetraRepositoryImpl : PetraRepository {
 
     private var baseUrl = "https://dummyjson.com/"
@@ -52,7 +44,7 @@ class PetraRepositoryImpl : PetraRepository {
     private lateinit var httpClient: HttpClient
 
 
-    private suspend fun initHttpClient() {
+    private fun initHttpClient() {
 
         httpClient = HttpClient {
             install(DefaultRequest) {
@@ -121,10 +113,6 @@ class PetraRepositoryImpl : PetraRepository {
             onFailure(internetErrorMessage())
         } catch (e: Exception) {
             e.printStackTrace()
-            when {
-                e.message?.lowercase()?.contains("no address associated") == true -> onFailure(timeOutErrorMessage())
-                else -> onFailure(checkIfProdIsPresent(e.message.toString()))
-            }
         }
     }
 
@@ -138,19 +126,8 @@ class PetraRepositoryImpl : PetraRepository {
         val rawBody = response.bodyAsText()
         when (response.status) {
             HttpStatusCode.OK, HttpStatusCode.Created -> {
-//                if (encryptedCommunication()) {
-//                    handleSuccess(response, onSuccess, onFailure)
-//                } else {
-//                    val decryptedResponse = if (rawBody.startsWith("{") || rawBody.startsWith("[")) {
-//                        rawBody
-//                    } else {
-//                        decryData(rawBody)
-//                    }
-
                     val responseObject = json.decodeFromString<T>(rawBody)
-//                    (responseObject as? LoginResponse)?.token?.let { TokenManager.setToken(it) }
                     onSuccess(responseObject)
-//                }
             }
             HttpStatusCode.Accepted -> onSpecialCase?.invoke(response)
             HttpStatusCode.TooManyRequests -> onFailure(tooManyRequestErrorMessage())
@@ -178,43 +155,7 @@ class PetraRepositoryImpl : PetraRepository {
     private fun internetErrorMessage() = "Internet connection issue"
     private fun timeOutErrorMessage() = "Request timed out"
     private fun tooManyRequestErrorMessage() = "Too many requests"
-    private fun checkIfProdIsPresent(message: String): String {
-        return when {
-            message.contains("prod", ignoreCase = true) ||
-                    message.contains("kegow-middleware-soidnv4kmq", ignoreCase = true) ->
-                "Unable to process request. Try again."
 
-            else -> "An unexpected error occurred. Please try again."
-        }
-    }
-
-//    private fun decryData(encryptedMessage: String): String {
-//        return decryptMessage(
-//            encryptionKey = encryptionKey,
-//            encryptedMsg = encryptedMessage
-//        )
-//    }
-
-//    private suspend inline fun <reified T : Any> handleSuccess(
-//        response: HttpResponse,
-//        onSuccess: (T) -> Unit,
-//        onFailure: (String) -> Unit
-//    ) {
-//        try {
-//            val fetchResponse = response.bodyAsText()
-////            val decryptedResponse = if (fetchResponse.startsWith("{") || fetchResponse.startsWith("[")) {
-////                fetchResponse
-////            } else {
-////                decryData(fetchResponse)
-////            }
-//
-//            val responseObject = json.decodeFromString<T>(fetchResponse)
-////            (responseObject as? LoginResponse)?.token?.let { TokenManager.setToken(it) }
-//            onSuccess(responseObject)
-//        } catch (e: Exception) {
-//            onFailure("Failed to parse response")
-//        }
-//    }
 
     override suspend fun fetchProduct(
         onSuccess: (response: ProductResponse) -> Unit,
@@ -223,57 +164,15 @@ class PetraRepositoryImpl : PetraRepository {
         makeRequest<ProductResponse, Unit>(
             method = HttpMethod.Get,
             endpoint = "products",
-            onSuccess = onSuccess,
-            onFailure = onFailure
+            onSuccess = {
+                println("Got products: ${it.products}")
+                onSuccess(it)
+            },
+            onFailure = {
+                println("Failed to fetch products: $it")
+                onFailure(it)
+            }
         )
     }
-
-
-//    override suspend fun getStates(
-//        token: String,
-//        isDeviceTypeIOS: Boolean,
-//        onSuccess: (response: GetStateResponse) -> Unit,
-//        onFailure: (error: String) -> Unit
-//    ) {
-//        makeRequest<GetStateResponse,Unit>(
-//            method = HttpMethod.Get,
-//            endpoint = "/states",
-//            token = token,
-//            onSuccess = onSuccess,
-//            onFailure = onFailure
-//        )
-//    }
-//
-//    private suspend inline fun <reified T : Any> fetchDocumentFields(
-//        firestore: FirebaseFirestore,
-//        collectionName: String,
-//        documentId: String? = null,
-//        noinline onFieldFetched: (List<T?>) -> Unit
-//    ) {
-//        try {
-//            val snapshot = if (documentId != null) {
-//                listOf(firestore.collection(collectionName).document(documentId).get())
-//            } else {
-//                firestore.collection(collectionName).get().documents
-//            }
-//
-//            if (snapshot.isEmpty()) {
-//                onFieldFetched(emptyList())
-//                return
-//            }
-//
-//            // Explicitly map to List<T?> using the reified type
-//            val result: List<T?> = snapshot.map { document ->
-//                try {
-//                    document.data()
-//                } catch (e: Exception) {
-//                    null
-//                }
-//            }
-//            onFieldFetched(result)
-//        } catch (e: Exception) {
-//            onFieldFetched(emptyList())
-//        }
-//    }
 
 }

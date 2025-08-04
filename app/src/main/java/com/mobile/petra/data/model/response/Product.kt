@@ -8,13 +8,10 @@ import kotlinx.serialization.Serializable
 data class ProductResponse(
     @SerialName("products")
     val products: List<Product>,
-
     @SerialName("total")
     val total: Int,
-
     @SerialName("skip")
     val skip: Int,
-
     @SerialName("limit")
     val limit: Int
 )
@@ -23,67 +20,46 @@ data class ProductResponse(
 data class Product(
     @SerialName("id")
     val id: Int,
-
     @SerialName("title")
     val title: String,
-
     @SerialName("description")
     val description: String,
-
     @SerialName("category")
     val category: String,
-
     @SerialName("price")
     val price: Double,
-
     @SerialName("discountPercentage")
     val discountPercentage: Double,
-
     @SerialName("rating")
     val rating: Double,
-
     @SerialName("stock")
     val stock: Int,
-
     @SerialName("tags")
     val tags: List<String>,
-
     @SerialName("brand")
     val brand: String,
-
     @SerialName("sku")
     val sku: String,
-
     @SerialName("weight")
     val weight: Int,
-
     @SerialName("dimensions")
     val dimensions: Dimensions,
-
     @SerialName("warrantyInformation")
     val warrantyInformation: String,
-
     @SerialName("shippingInformation")
     val shippingInformation: String,
-
     @SerialName("availabilityStatus")
     val availabilityStatus: String,
-
     @SerialName("reviews")
     val reviews: List<Review>,
-
     @SerialName("returnPolicy")
     val returnPolicy: String,
-
     @SerialName("minimumOrderQuantity")
     val minimumOrderQuantity: Int,
-
     @SerialName("meta")
     val meta: Meta,
-
     @SerialName("thumbnail")
     val thumbnail: String,
-
     @SerialName("images")
     val images: List<String>
 )
@@ -92,10 +68,8 @@ data class Product(
 data class Dimensions(
     @SerialName("width")
     val width: Double,
-
     @SerialName("height")
     val height: Double,
-
     @SerialName("depth")
     val depth: Double
 )
@@ -104,16 +78,12 @@ data class Dimensions(
 data class Review(
     @SerialName("rating")
     val rating: Int,
-
     @SerialName("comment")
     val comment: String,
-
     @SerialName("date")
     val date: String,
-
     @SerialName("reviewerName")
     val reviewerName: String,
-
     @SerialName("reviewerEmail")
     val reviewerEmail: String
 )
@@ -122,13 +92,10 @@ data class Review(
 data class Meta(
     @SerialName("createdAt")
     val createdAt: String,
-
     @SerialName("updatedAt")
     val updatedAt: String,
-
     @SerialName("barcode")
     val barcode: String,
-
     @SerialName("qrCode")
     val qrCode: String
 )

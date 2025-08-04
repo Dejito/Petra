@@ -3,7 +3,6 @@ package com.mobile.petra.presentation.view
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,22 +18,23 @@ fun EndpointTest(productViewModel: ProductViewModel = koinViewModel()) {
     Scaffold {
         Column {
 
-            Text(text = "Shey you dey shilekun....",
+            Text(text = "Test endpoint..",
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.clickable {
+                modifier = Modifier
+                    .clickable {
                     println("fetching endpoint..")
-                    productViewModel.fetchProducts(
-                        onSuccess = {
-                            println("success resp......$it")
-                        },
-                        onFailure = {
-                            println("error resp......$it")
-                        }
-                    )
-                }
-                    .padding(horizontal = 16.dp, vertical = 40.dp)
-                )
+                        productViewModel.fetchProducts(
+                            onSuccess = {
+                                println("success resp......$it")
+                            },
+                            onFailure = {
+                                println("error resp......$it")
+                            }
+                        )
+                    }
+                    .padding(horizontal = 16.dp, vertical = 200.dp)
+            )
         }
     }
 }
