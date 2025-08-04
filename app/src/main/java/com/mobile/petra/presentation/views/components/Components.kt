@@ -1,11 +1,15 @@
 package com.mobile.petra.presentation.views.components
 
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronLeft
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -94,4 +98,18 @@ fun TitleText(
             overflow = overflow
         )
     }
+}
+
+@Composable
+fun KegowDivider(modifier: Modifier = Modifier, height: Double, color: Color = Color.Transparent) {
+    Divider(
+        modifier
+            .height(height.dp),
+        color = color
+    )
+}
+
+@Composable
+fun KegowSpacer(width: Int) {
+    Spacer(modifier = Modifier.width(width.dp))
 }
