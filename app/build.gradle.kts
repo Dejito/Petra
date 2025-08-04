@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.material.icons.extended)
 
     //viewmodel, ktor, http, koin
     implementation(libs.androidx.lifecycle.viewmodel.compose)

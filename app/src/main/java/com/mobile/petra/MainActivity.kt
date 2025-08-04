@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -12,9 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.ViewModelProvider
-import com.mobile.petra.presentation.view.EndpointTest
-import com.mobile.petra.presentation.viewmodel.product.ProductViewModel
+import com.mobile.petra.presentation.views.EndpointTest
+import com.mobile.petra.presentation.views.auth.sign_in.LoginScreen
+import com.mobile.petra.router.AppNavigators
 import com.mobile.petra.ui.theme.PetraTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,23 +29,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PetraTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { _ ->
-                    EndpointTest()
-//                    Greeting(
-//                        name = "Android",
-//                        modifier = Modifier.padding(innerPadding)
-//                            .clickable {
-//                                productVm.fetchProducts(
-//                                    onSuccess = {
-//                                        println("success resp......$it")
-//                                    },
-//                                    onFailure = {
-//                                        println("error resp......$it")
-//                                    }
-//                                )
-//                            }
-//                    )
-                }
+//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    AppNavigators()
+//                }
             }
         }
     }

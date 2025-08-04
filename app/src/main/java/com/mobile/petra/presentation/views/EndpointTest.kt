@@ -1,4 +1,4 @@
-package com.mobile.petra.presentation.view
+package com.mobile.petra.presentation.views
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -15,8 +15,8 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun EndpointTest(productViewModel: ProductViewModel = koinViewModel()) {
-    Scaffold {
-        Column {
+    Scaffold { pad ->
+        Column(modifier = Modifier.padding(pad)) {
 
             Text(text = "Test endpoint..",
                 fontSize = 30.sp,

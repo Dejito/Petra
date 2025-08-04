@@ -1,4 +1,4 @@
-package com.mobile.petra.di
+package com.mobile.petra.presentation.di
 
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
