@@ -1,6 +1,7 @@
 package com.mobile.petra.presentation.views.auth.sign_in
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -13,17 +14,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.mobile.petra.R
+import com.mobile.petra.presentation.views.components.LoginScreenTextField
+import com.mobile.petra.presentation.views.components.PetraOutlinedTextField
 import com.mobile.petra.presentation.views.components.TitleText
 
 @Composable
 fun LoginScreen(modifier: Modifier = Modifier) {
     Scaffold { paddingValues ->
         Column(
-            modifier = Modifier
+            modifier = modifier
                 .padding(paddingValues)
                 .padding(16.dp)
                 .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
 
             Image(
@@ -47,11 +51,20 @@ fun LoginScreen(modifier: Modifier = Modifier) {
             TitleText(
                 text = "Log in now to access our \n diverse product offerings",
                 fontSize = 18,
-//                fontWeight = FontWeight.W500,
-                topPadding = 16,
+                topPadding = 40,
                 maxLines = 2
+            )
+
+
+            LoginScreenTextField(
+                pin = "",
+                onPinTextChanged = {},
+                onClickPinTextField = {},
+                onClickedForgotPin = {},
+                passwordError = ""
             )
 
         }
     }
 }
+
