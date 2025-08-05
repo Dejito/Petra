@@ -1,6 +1,7 @@
 package com.mobile.petra.presentation.views.products
 
 import Product
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -39,9 +40,8 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun ProductItem(
-    product: Product,
-    viewModel: ProductsViewModel = koinViewModel(), // or pass explicitly
-    onProductClick: (Product) -> Unit
+//    product: Product,
+//    onProductClick: (Product) -> Unit
 ) {
 //    val updatedProduct by viewModel.getProductById(product.id).collectAsState(initial = product)
 
@@ -56,14 +56,25 @@ fun ProductItem(
                 .fillMaxWidth()
                 .aspectRatio(1f)
             ) {
-                AsyncImage(
-                    model = "",
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize(),
-                    placeholder = painterResource(id = R.drawable.brand_logo),
-                    error = painterResource(id = R.drawable.brand_logo)
+                Image(
+                    painter = painterResource(id = R.drawable.brand_logo),
+                    contentDescription = "brand_logo",
+                    modifier = Modifier
+                        .size(
+                            width = 200.31.dp,
+                            height = 120.88.dp
+                        )
+                        .padding(top = 30.dp)
+//                        .align(Alignment.CenterHorizontally)
                 )
+//                AsyncImage(
+//                    model = "",
+//                    contentDescription = null,
+//                    contentScale = ContentScale.Crop,
+//                    modifier = Modifier.fillMaxSize(),
+//                    placeholder = painterResource(id = R.drawable.brand_logo),
+//                    error = painterResource(id = R.drawable.brand_logo)
+//                )
 
                 IconButton(
                     onClick = {
