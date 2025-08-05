@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.mobile.petra.presentation.views.products.screens.ProductDetailScreen
 import com.mobile.petra.presentation.views.products.screens.ProductListingScreen
+import com.mobile.petra.router.AppNavigators
 import com.mobile.petra.ui.theme.PetraTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,8 +26,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PetraTheme {
-                ProductDetailScreen()
-//                    AppNavigators()
+                    AppNavigators()
             }
         }
     }

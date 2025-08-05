@@ -27,11 +27,11 @@ import com.mobile.petra.router.Navigator
 
 @Composable
 fun SignUpScreen(
-//    navigator: Navigator
+    navigator: Navigator
 ){
     Scaffold(
         topBar = { PetraAppBar(title = "Sign Up", onClick = {
-//            navigator.navigateUp()
+            navigator.navigateUp()
         }) }
     ) { paddingValues ->
         Column(
@@ -88,7 +88,7 @@ fun SignUpScreen(
                     fontSize = 15,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.clickable {
-//                        navigator.navToSignUp()
+                        navigator.navToSignUp()
                     },
                 )
 
