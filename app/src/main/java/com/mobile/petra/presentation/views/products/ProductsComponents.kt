@@ -40,6 +40,7 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun ProductItem(
+    product: Product
 //    product: Product,
 //    onProductClick: (Product) -> Unit
 ) {
@@ -68,7 +69,7 @@ fun ProductItem(
 ////                        .align(Alignment.CenterHorizontally)
 //                )
                 AsyncImage(
-                    model = "",
+                    model = product.images[0],
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize(),
@@ -100,14 +101,14 @@ fun ProductItem(
                 .fillMaxWidth()
             ) {
                 Text(
-                    text = "updatedProduct.title",
+                    text = product.title,
                     style = MaterialTheme.typography.bodyLarge,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "updatedProduct.price}",
+                    text = "N${product.price}",
                     style = MaterialTheme.typography.bodyMedium.copy(
                         color = Color(0xFF4CAF50), // green
                         fontWeight = FontWeight.Bold,
