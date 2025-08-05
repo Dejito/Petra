@@ -83,6 +83,12 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.koin.compose.viewmodel.v401)
 
+    //others
+    implementation(libs.coil.svg)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.gif)
+    implementation(libs.material.icons.extended)
+
     //test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
