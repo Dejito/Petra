@@ -1,6 +1,7 @@
 package com.mobile.petra.presentation.views.products
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -25,7 +26,8 @@ fun ProductListingScreen() {
                 .padding(16.dp)
         ) {
             LazyVerticalGrid(
-                columns = GridCells.Adaptive(minSize = 150.dp)
+                columns = GridCells.Adaptive(minSize = 130.dp),
+                contentPadding = PaddingValues(12.dp)
             ) {
                 items(products){ product ->
                     ProductItem(product)
