@@ -56,25 +56,25 @@ fun ProductItem(
                 .fillMaxWidth()
                 .aspectRatio(1f)
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.brand_logo),
-                    contentDescription = "brand_logo",
-                    modifier = Modifier
-                        .size(
-                            width = 200.31.dp,
-                            height = 120.88.dp
-                        )
-                        .padding(top = 30.dp)
-//                        .align(Alignment.CenterHorizontally)
-                )
-//                AsyncImage(
-//                    model = "",
-//                    contentDescription = null,
-//                    contentScale = ContentScale.Crop,
-//                    modifier = Modifier.fillMaxSize(),
-//                    placeholder = painterResource(id = R.drawable.brand_logo),
-//                    error = painterResource(id = R.drawable.brand_logo)
+//                Image(
+//                    painter = painterResource(id = R.drawable.brand_logo),
+//                    contentDescription = "brand_logo",
+//                    modifier = Modifier
+//                        .size(
+//                            width = 200.31.dp,
+//                            height = 120.88.dp
+//                        )
+//                        .padding(top = 30.dp)
+////                        .align(Alignment.CenterHorizontally)
 //                )
+                AsyncImage(
+                    model = "",
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize(),
+                    placeholder = painterResource(id = R.drawable.brand_logo),
+                    error = painterResource(id = R.drawable.brand_logo)
+                )
 
                 IconButton(
                     onClick = {
