@@ -13,7 +13,7 @@ class DataSource {
                 description = "A beautiful golden dress",
                 slug = "",
                 price = 2000.0,
-                isFavorite = false,
+                isFavorite = true,
                 category = Category(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
@@ -58,7 +58,7 @@ class DataSource {
                 description = "Player of the beautiful game",
                 slug = "",
                 price = 5400.0,
-                isFavorite = false,
+                isFavorite = true,
                 category = Category(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
@@ -88,7 +88,7 @@ class DataSource {
                 description = "Super Dynamic 08 ",
                 slug = "",
                 price = 8900.0,
-                isFavorite = false,
+                isFavorite = true,
                 category = Category(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
@@ -133,7 +133,7 @@ class DataSource {
                 description = "Elongated, languid, lanky, CB",
                 slug = "",
                 price = 2000.0,
-                isFavorite = false,
+                isFavorite = true,
                 category = Category(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
@@ -163,7 +163,7 @@ class DataSource {
                 description = "Belatedly realising potential",
                 slug = "",
                 price = 2200.0,
-                isFavorite = false,
+                isFavorite = true,
                 category = Category(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",

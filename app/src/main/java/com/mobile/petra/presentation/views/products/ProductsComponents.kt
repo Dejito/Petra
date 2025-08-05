@@ -1,6 +1,7 @@
 package com.mobile.petra.presentation.views.products
 
-import Product
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -23,20 +24,28 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import coil.compose.AsyncImagePainter
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import com.mobile.petra.R
-import com.mobile.petra.presentation.viewmodel.product.ProductsViewModel
-import org.koin.compose.viewmodel.koinViewModel
+import com.mobile.petra.data.local.Product
 
 @Composable
 fun ProductItem(
@@ -57,24 +66,18 @@ fun ProductItem(
                 .fillMaxWidth()
                 .aspectRatio(1f)
             ) {
-//                Image(
-//                    painter = painterResource(id = R.drawable.brand_logo),
-//                    contentDescription = "brand_logo",
-//                    modifier = Modifier
-//                        .size(
-//                            width = 200.31.dp,
-//                            height = 120.88.dp
-//                        )
-//                        .padding(top = 30.dp)
-////                        .align(Alignment.CenterHorizontally)
-//                )
+
+
                 AsyncImage(
-                    model = product.images[0],
-                    contentDescription = null,
+                    model = ImageRequest.Builder(context = LocalContext.current)
+                        .data(product.images[0])
+                        .crossfade(true)
+                        .build(),
+                    error = painterResource(R.drawable.brand_logo),
+                    placeholder = painterResource(R.drawable.brand_logo),
+                    contentDescription = "",
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize(),
-                    placeholder = painterResource(id = R.drawable.brand_logo),
-                    error = painterResource(id = R.drawable.brand_logo)
+                    modifier = Modifier.fillMaxWidth()
                 )
 
                 IconButton(
@@ -90,7 +93,7 @@ fun ProductItem(
                     Icon(
                         imageVector = Icons.Default.Favorite,
                         contentDescription = null,
-//                        tint = if (updatedProduct.isFavorite == true) Color.Red else Color.Gray,
+                        tint = if (product.isFavorite) Color.Red else Color.Gray,
                         modifier = Modifier.size(18.dp)
                     )
                 }
@@ -119,3 +122,5 @@ fun ProductItem(
         }
     }
 }
+
+
