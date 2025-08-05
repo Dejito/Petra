@@ -10,5 +10,5 @@ import org.koin.dsl.module
 
 val productModule = module {
     singleOf(::PetraRepositoryImpl) { bind<PetraRepository>() }
-    viewModelOf(::ProductViewModel)
+    viewModelOf(::ProductsViewModel)
 }

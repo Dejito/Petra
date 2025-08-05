@@ -19,7 +19,9 @@ navigationCompose = "2.8.5"
 koin = "4.0.1"
 kotlinxCoroutinesCore = "1.10.1"
 material-icons-extended = "1.7.6"
-
+coilSvg = "2.7.0"
+coil-compose = "2.7.0"
+coil-gif = "2.7.0"
 
 
 [libraries]
@@ -52,7 +54,9 @@ koin-compose-viewmodel-v401 = { module = "io.insert-koin:koin-compose-viewmodel"
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "material-icons-extended" }
-
+coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coilSvg" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil-compose" }
+coil-gif = { module = "io.coil-kt:coil-gif", version.ref = "coil-gif" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

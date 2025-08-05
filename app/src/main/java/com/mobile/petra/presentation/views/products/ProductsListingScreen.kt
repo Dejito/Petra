@@ -9,13 +9,14 @@ import androidx.compose.ui.unit.dp
 import com.mobile.petra.presentation.views.components.PetraAppBar
 
 @Composable
-fun ProductListingScreen(){
+fun ProductListingScreen() {
     Scaffold(
         topBar = { PetraAppBar(title = "Products") }
-    ) {
-        paddingValues ->
+    ) { paddingValues ->
         Column(
-            modifier = Modifier.padding(paddingValues).padding(16.dp)
+            modifier = Modifier
+                .padding(paddingValues)
+                .padding(16.dp)
         ) {
 
         }

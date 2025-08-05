@@ -10,11 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.mobile.petra.presentation.viewmodel.product.ProductViewModel
+import com.mobile.petra.presentation.viewmodel.product.ProductsViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun EndpointTest(productViewModel: ProductViewModel = koinViewModel()) {
+fun EndpointTest(productViewModel: ProductsViewModel = koinViewModel()) {
     Scaffold { pad ->
         Column(modifier = Modifier.padding(pad)) {
 
