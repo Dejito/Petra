@@ -4,18 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.mobile.petra.presentation.views.EndpointTest
-import com.mobile.petra.presentation.views.auth.sign_in.LoginScreen
-import com.mobile.petra.presentation.views.auth.sign_up.SignUpScreen
-import com.mobile.petra.presentation.views.products.ProductListingScreen
-import com.mobile.petra.router.AppNavigators
+import com.mobile.petra.presentation.views.products.screens.ProductDetailScreen
+import com.mobile.petra.presentation.views.products.screens.ProductListingScreen
 import com.mobile.petra.ui.theme.PetraTheme
 
 class MainActivity : ComponentActivity() {
@@ -31,7 +25,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PetraTheme {
-                ProductListingScreen()
+                ProductDetailScreen()
 //                    AppNavigators()
             }
         }
