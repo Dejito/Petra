@@ -32,7 +32,7 @@ fun ProductListingScreen(navigator: Navigator) {
                 contentPadding = PaddingValues(6.dp)
             ) {
                 items(products){ product ->
-                    ProductItem(product)
+                    ProductItem()
                 }
             }
         }

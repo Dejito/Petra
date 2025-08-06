@@ -49,9 +49,9 @@ import com.mobile.petra.data.local.Product
 
 @Composable
 fun ProductItem(
-    product: Product
+    product: Product,
+    modifier: Modifier,
 //    product: Product,
-    onProductClick: (Product) -> Unit
 ) {
 //    val updatedProduct by viewModel.getProductById(product.id).collectAsState(initial = product)
 
@@ -59,9 +59,8 @@ fun ProductItem(
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onProductClick() }
     ) {
-        Column(modifier = Modifier.background(Color.White)) {
+        Column(modifier = modifier.background(Color.White)) {
             Box(modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(1f)
