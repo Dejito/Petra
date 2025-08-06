@@ -30,7 +30,7 @@ import kotlinx.serialization.json.Json
 
 class PetraRepositoryImpl : PetraRepository {
 
-    private var baseUrl = "https://dummyjson.com/"
+    private var baseUrl = "https://api.escuelajs.co/api/v1/"
 
     private val json = Json {
         ignoreUnknownKeys = true
@@ -177,13 +177,12 @@ class PetraRepositoryImpl : PetraRepository {
         onFailure: (error: String) -> Unit
     ) {
         makeRequest<ProductResponse, Unit>(
-            method = HttpMethod.Get,
-            endpoint = "products",
+            method = HttpMethod.Post,
+            endpoint = "users/",
             onSuccess = {
                 onSuccess()
             },
             onFailure = {
-                println("Failed to fetch products: $it")
                 onFailure(it)
             }
         )    }

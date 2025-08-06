@@ -5,6 +5,6 @@ import com.mobile.petra.data.remote.PetraRepository
 
 class AuthViewModel(private val petraRepository: PetraRepository) : ViewModel() {
 
-//    fun
+    fun
 
 }
