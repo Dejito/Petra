@@ -282,7 +282,6 @@ internal fun LoginScreenTextField(
 //    phoneNumber: String,
     pin: String,
     email: String,
-////    showSoftKeyboard: MutableState<Boolean>,
     onEmailTextChanged: (text: String) -> Unit,
     onPinTextChanged: (text: String) -> Unit,
 //    phoneNumberError: String,
@@ -296,6 +295,8 @@ internal fun LoginScreenTextField(
     ) {
 
         PetraOutlinedTextField(
+            value = email,
+            onTextChanged = onEmailTextChanged,
             placeholderText = "Email",
             textFieldColors = TextFieldDefaults.colors().copy(
                 unfocusedContainerColor = Color.White,

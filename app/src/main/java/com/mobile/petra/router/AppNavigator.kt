@@ -37,7 +37,7 @@ fun AppNavigators() {
         }
 
         composable(Routes.ProductDetail.route) {
-            ProductDetailScreen()
+            ProductDetailScreen(navigation)
         }
 
 

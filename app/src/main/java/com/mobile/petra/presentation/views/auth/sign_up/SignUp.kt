@@ -101,7 +101,7 @@ fun SignUpScreen(
                     fontSize = 15,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.clickable {
-                        navigator.navToSignUp()
+                        navigator.navigateUp()
                     },
                 )
 

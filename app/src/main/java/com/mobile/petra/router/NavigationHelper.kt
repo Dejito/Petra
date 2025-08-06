@@ -5,15 +5,15 @@ import androidx.navigation.NavHostController
 
 class Navigator(private val navController: NavHostController) {
 
-    fun navigateToHome() {
-        navController.navigate(Routes.Home.route) {
-            launchSingleTop = true
-            restoreState = true
-            popUpTo(Routes.Home.route) {
-                inclusive = false
-            }
-        }
-    }
+//    fun navigateToHome() {
+//        navController.navigate(Routes.Home.route) {
+//            launchSingleTop = true
+//            restoreState = true
+//            popUpTo(Routes.Home.route) {
+//                inclusive = false
+//            }
+//        }
+//    }
 
     fun navToSignIn() {
         navController.navigate(Routes.SignIn.route)
