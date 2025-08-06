@@ -22,12 +22,16 @@ import androidx.compose.ui.unit.dp
 import com.mobile.petra.R
 import com.mobile.petra.presentation.views.components.LoginScreenTextField
 import com.mobile.petra.presentation.views.components.PetraBottomButton
-import com.mobile.petra.presentation.views.components.PetraOutlinedTextField
 import com.mobile.petra.presentation.views.components.TitleText
 import com.mobile.petra.router.Navigator
 
 @Composable
-fun LoginScreen(navigator: Navigator, modifier: Modifier = Modifier) {
+fun LoginScreen(navigator: Navigator) {
+
+}
+
+@Composable
+fun Login(navigator: Navigator, modifier: Modifier = Modifier) {
 
     var pin by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }

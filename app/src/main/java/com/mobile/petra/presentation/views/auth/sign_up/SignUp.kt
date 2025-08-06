@@ -64,36 +64,6 @@ fun SignUpScreen(
         }
     }
 
-
-//    ActivateCardScreen(
-//        onNavigateUp = onNavigateUp,
-//    )
-//
-//    when (val cardActivationUiState =
-//        cardActivationViewModel.cardActivationUiState.collectAsState().value) {
-//        is CardActivationViewState.Default -> {}
-//
-//        is CardActivationViewState.Loading -> {
-//            KegowLoadingDialog(subtitle = "We are processing your card activation")
-//        }
-//
-//        is CardActivationViewState.Error -> {
-//            KegowFailedDialog(
-//                subtitle = cardActivationUiState.errorMessage ?: "Something went wrong",
-//                onOkayClicked = {
-//                    cardActivationViewModel.setCardActivationUiStateAsDefault()
-//                }
-//            )
-//        }
-//
-//        is CardActivationViewState.Success -> {
-//            KegowSuccessfulDialog(
-//                title = R.string.successful,
-//                subtitle = "Your card has been successfully activated",
-//                onOkayClicked = onNavigateToConfirmCardActivationDetails
-//            )
-//        }
-//    }
 }
 
 @Composable
@@ -141,6 +111,7 @@ fun SignUp(
                 maxLines = 2,
                 bottomPadding = 30
             )
+
             PetraOutlinedTextField(
                 value = name,
                 onTextChanged = { name = it },

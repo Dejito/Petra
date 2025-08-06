@@ -12,5 +12,11 @@ sealed class CreateUserViewStates {
     data object Loading : CreateUserViewStates()
     data object Success: CreateUserViewStates()
     data class Error(val errorMessage: String?=null) : CreateUserViewStates()
+}
 
+sealed class LoginViewStates {
+    data object Default : LoginViewStates()
+    data object Loading : LoginViewStates()
+    data object Success: LoginViewStates()
+    data class Error(val errorMessage: String?=null) : LoginViewStates()
 }
