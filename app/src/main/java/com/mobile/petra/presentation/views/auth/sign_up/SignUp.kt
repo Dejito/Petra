@@ -19,6 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -31,8 +32,8 @@ import com.mobile.petra.presentation.views.components.PetraAppBar
 import com.mobile.petra.presentation.views.components.PetraBottomButton
 import com.mobile.petra.presentation.views.components.PetraOutlinedTextField
 import com.mobile.petra.presentation.views.components.TitleText
+import com.mobile.petra.presentation.views.components.displayToastMessage
 import com.mobile.petra.router.Navigator
-import com.mobile.petra.router.Routes
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -40,6 +41,7 @@ fun SignUpScreen(
     navigator: Navigator,
     authViewModel: AuthViewModel = koinViewModel()
 ) {
+    val context = LocalContext.current
 
     SignUp(navigator, authViewModel)
 
@@ -51,11 +53,14 @@ fun SignUpScreen(
         }
 
         is CreateUserViewStates.Error -> {
-
+            context.displayToastMessage(createUserViewStates.errorMessage ?: "")
+            authViewModel.setViewStateAsDefault()
         }
 
         is CreateUserViewStates.Success -> {
-
+            context.displayToastMessage("Account successfully created!")
+            authViewModel.setViewStateAsDefault()
+            navigator.navigateUp()
         }
     }
 
@@ -97,7 +102,7 @@ fun SignUp(
     authViewModel: AuthViewModel
 ) {
     var name by rememberSaveable { mutableStateOf("") }
-    var pin by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
     val createUserUiStates = authViewModel.createUserUiState.collectAsState().value
 
@@ -147,9 +152,9 @@ fun SignUp(
             )
 
             LoginScreenTextField(
-                pin = pin,
+                pin = password,
                 email = email,
-                onPinTextChanged = { pin = it },
+                onPinTextChanged = { password = it },
                 onEmailTextChanged = { email = it },
                 onClickedForgotPin = {},
                 passwordError = ""
@@ -161,9 +166,9 @@ fun SignUp(
                 modifier = Modifier.padding(vertical = 24.dp),
                 onClick = {
                     val createUserReqBody = CreateUserReqBody(
-                        name = "Oladeji",
-                        email = "Deerealboy@gmail.com",
-                        password = "555555"
+                        name = name,
+                        email = email,
+                        password = password
                     )
                     authViewModel.createUser(createUserReqBody = createUserReqBody)
                 }
