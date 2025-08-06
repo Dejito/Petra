@@ -2,6 +2,7 @@ package com.mobile.petra.data.remote
 
 import ProductResponse
 import com.mobile.petra.data.model.request.auth.CreateUserReqBody
+import com.mobile.petra.data.model.request.auth.LoginReqBody
 
 
 interface PetraRepository {
@@ -13,6 +14,12 @@ interface PetraRepository {
 
     suspend fun createUser(
         createUserReqBody: CreateUserReqBody,
+        onSuccess: () -> Unit,
+        onFailure: (error: String) -> Unit
+    )
+
+    suspend fun login(
+        loginReqBody: LoginReqBody,
         onSuccess: () -> Unit,
         onFailure: (error: String) -> Unit
     )

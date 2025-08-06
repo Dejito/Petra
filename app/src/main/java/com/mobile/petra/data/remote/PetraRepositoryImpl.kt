@@ -2,6 +2,7 @@ package com.mobile.petra.data.remote
 
 import ProductResponse
 import com.mobile.petra.data.model.request.auth.CreateUserReqBody
+import com.mobile.petra.data.model.request.auth.LoginReqBody
 import com.mobile.petra.data.model.response.ResponseMessage
 import io.ktor.client.HttpClient
 import io.ktor.client.network.sockets.SocketTimeoutException
@@ -182,6 +183,20 @@ class PetraRepositoryImpl : PetraRepository {
             requestBody = createUserReqBody,
             onSuccess = { onSuccess() },
             onFailure = { onFailure(it) }
+        )
+    }
+
+    override suspend fun login(
+        loginReqBody: LoginReqBody,
+        onSuccess: () -> Unit,
+        onFailure: (error: String) -> Unit
+    ) {
+        makeRequest<Unit, LoginReqBody>(
+            method = HttpMethod.Post,
+            endpoint = "auth/login",
+            requestBody = loginReqBody,
+            onSuccess = { onSuccess() },
+            onFailure = onFailure
         )
     }
 
