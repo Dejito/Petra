@@ -7,7 +7,7 @@ import com.mobile.petra.data.remote.PetraRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ProductsViewModel(private  val petraRepository: PetraRepository) : ViewModel() {
+class ProductsViewModel(private val petraRepository: PetraRepository) : ViewModel() {
 
     fun fetchProducts(
         onSuccess: (ProductResponse) -> Unit,
