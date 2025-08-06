@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -24,29 +25,89 @@ import androidx.compose.ui.unit.dp
 import com.mobile.petra.R
 import com.mobile.petra.data.model.request.auth.CreateUserReqBody
 import com.mobile.petra.presentation.viewmodel.auth.AuthViewModel
+import com.mobile.petra.presentation.viewmodel.auth.CreateUserViewStates
 import com.mobile.petra.presentation.views.components.LoginScreenTextField
 import com.mobile.petra.presentation.views.components.PetraAppBar
 import com.mobile.petra.presentation.views.components.PetraBottomButton
 import com.mobile.petra.presentation.views.components.PetraOutlinedTextField
 import com.mobile.petra.presentation.views.components.TitleText
 import com.mobile.petra.router.Navigator
+import com.mobile.petra.router.Routes
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun SignUpScreen(
     navigator: Navigator,
     authViewModel: AuthViewModel = koinViewModel()
-){
+) {
+
+    SignUp(navigator, authViewModel)
+
+    when (val createUserViewStates = authViewModel.createUserUiState.collectAsState().value) {
+        is CreateUserViewStates.Default -> {}
+
+        is CreateUserViewStates.Loading -> {
+
+        }
+
+        is CreateUserViewStates.Error -> {
+
+        }
+
+        is CreateUserViewStates.Success -> {
+
+        }
+    }
+
+
+//    ActivateCardScreen(
+//        onNavigateUp = onNavigateUp,
+//    )
+//
+//    when (val cardActivationUiState =
+//        cardActivationViewModel.cardActivationUiState.collectAsState().value) {
+//        is CardActivationViewState.Default -> {}
+//
+//        is CardActivationViewState.Loading -> {
+//            KegowLoadingDialog(subtitle = "We are processing your card activation")
+//        }
+//
+//        is CardActivationViewState.Error -> {
+//            KegowFailedDialog(
+//                subtitle = cardActivationUiState.errorMessage ?: "Something went wrong",
+//                onOkayClicked = {
+//                    cardActivationViewModel.setCardActivationUiStateAsDefault()
+//                }
+//            )
+//        }
+//
+//        is CardActivationViewState.Success -> {
+//            KegowSuccessfulDialog(
+//                title = R.string.successful,
+//                subtitle = "Your card has been successfully activated",
+//                onOkayClicked = onNavigateToConfirmCardActivationDetails
+//            )
+//        }
+//    }
+}
+
+@Composable
+fun SignUp(
+    navigator: Navigator,
+    authViewModel: AuthViewModel
+) {
     var name by rememberSaveable { mutableStateOf("") }
     var pin by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
-
+    val createUserUiStates = authViewModel.createUserUiState.collectAsState().value
 
 
     Scaffold(
-        topBar = { PetraAppBar(title = "Sign Up", onClick = {
-            navigator.navigateUp()
-        }) }
+        topBar = {
+            PetraAppBar(title = "Sign Up", onClick = {
+                navigator.navigateUp()
+            })
+        }
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -96,6 +157,7 @@ fun SignUpScreen(
 
             PetraBottomButton(
                 text = "Sign Up",
+                isLoading = createUserUiStates == CreateUserViewStates.Loading,
                 modifier = Modifier.padding(vertical = 24.dp),
                 onClick = {
                     val createUserReqBody = CreateUserReqBody(

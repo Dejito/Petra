@@ -11,27 +11,27 @@ import kotlinx.coroutines.launch
 
 class AuthViewModel(private val petraRepository: PetraRepository) : ViewModel() {
 
-    private var _createUserState: MutableStateFlow<CreateUserViewStates> =
+    private var _createUserUiState: MutableStateFlow<CreateUserViewStates> =
         MutableStateFlow(CreateUserViewStates.Default)
 
-    val cardRequestState: StateFlow<CreateUserViewStates> get() = _createUserState
+    val createUserUiState: StateFlow<CreateUserViewStates> get() = _createUserUiState
 
 
     fun createUser(
         createUserReqBody: CreateUserReqBody
     ) {
         viewModelScope.launch(Dispatchers.IO) {
-            _createUserState.emit(CreateUserViewStates.Loading)
+            _createUserUiState.emit(CreateUserViewStates.Loading)
             petraRepository.createUser(
                 createUserReqBody,
                 onSuccess = {
                     viewModelScope.launch(context = Dispatchers.Main) {
-                        _createUserState.emit(CreateUserViewStates.Success)
+                        _createUserUiState.emit(CreateUserViewStates.Success)
                     }
                 },
                 onFailure = { error ->
                     viewModelScope.launch(context = Dispatchers.Main) {
-                        _createUserState.emit(CreateUserViewStates.Error(error))
+                        _createUserUiState.emit(CreateUserViewStates.Error(error))
                     }
                 }
             )
@@ -40,7 +40,7 @@ class AuthViewModel(private val petraRepository: PetraRepository) : ViewModel() 
 
     fun setViewStateAsDefault() {
         viewModelScope.launch {
-            _createUserState.emit(CreateUserViewStates.Default)
+            _createUserUiState.emit(CreateUserViewStates.Default)
         }
     }
 
