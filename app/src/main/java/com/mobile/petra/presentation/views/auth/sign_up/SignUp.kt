@@ -11,6 +11,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,6 +33,12 @@ import com.mobile.petra.router.Navigator
 fun SignUpScreen(
     navigator: Navigator
 ){
+    val name by rememberSaveable { mutableStateOf("") }
+    var pin by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
+
+
+
     Scaffold(
         topBar = { PetraAppBar(title = "Sign Up", onClick = {
             navigator.navigateUp()
@@ -62,6 +72,7 @@ fun SignUpScreen(
                 bottomPadding = 30
             )
             PetraOutlinedTextField(
+                value = name,
                 placeholderText = "Name",
                 textFieldColors = TextFieldDefaults.colors().copy(
                     unfocusedContainerColor = Color.White,
@@ -70,12 +81,14 @@ fun SignUpScreen(
             )
 
             LoginScreenTextField(
-                pin = "",
-                onPinTextChanged = {},
-                onClickPinTextField = {},
+                pin = pin,
+                email = email,
+                onPinTextChanged = { pin = it },
+                onEmailTextChanged = { email = it },
                 onClickedForgotPin = {},
                 passwordError = ""
             )
+
             PetraBottomButton(
                 text = "Sign Up",
                 modifier = Modifier.padding(vertical = 24.dp)

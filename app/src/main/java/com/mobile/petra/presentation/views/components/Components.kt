@@ -281,13 +281,13 @@ fun PetraOutlinedTextField(
 internal fun LoginScreenTextField(
 //    phoneNumber: String,
     pin: String,
+    email: String,
 ////    showSoftKeyboard: MutableState<Boolean>,
-//    onPhoneNumberTextChanged: (text: String) -> Unit,
+    onEmailTextChanged: (text: String) -> Unit,
     onPinTextChanged: (text: String) -> Unit,
 //    phoneNumberError: String,
     passwordError: String,
 //    onClickPhoneNumberTextField: () -> Unit,
-    onClickPinTextField: () -> Unit,
     onClickedForgotPin: () -> Unit,
 ) {
     var passwordVisibility by rememberSaveable { mutableStateOf(true) }
@@ -399,7 +399,7 @@ internal fun LoginScreenTextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .clickable { onClickPinTextField() }
+//                .clickable { onClickPinTextField() }
         )
         if (passwordError.isNotEmpty()) {
             Text(

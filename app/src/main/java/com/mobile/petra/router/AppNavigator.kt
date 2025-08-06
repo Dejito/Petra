@@ -27,7 +27,7 @@ fun AppNavigators() {
         }
 
         composable(Routes.SignUp.route) {
-            SignUpScreen()
+            SignUpScreen(navigation)
         }
 
 //        if (appInBackground == 1) {
