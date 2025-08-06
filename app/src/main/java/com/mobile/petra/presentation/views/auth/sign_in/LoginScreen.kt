@@ -29,7 +29,6 @@ import com.mobile.petra.router.Navigator
 @Composable
 fun LoginScreen(navigator: Navigator, modifier: Modifier = Modifier) {
 
-    val name by rememberSaveable { mutableStateOf("") }
     var pin by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
 

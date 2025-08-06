@@ -51,7 +51,7 @@ import com.mobile.petra.data.local.Product
 fun ProductItem(
     product: Product
 //    product: Product,
-//    onProductClick: (Product) -> Unit
+    onProductClick: (Product) -> Unit
 ) {
 //    val updatedProduct by viewModel.getProductById(product.id).collectAsState(initial = product)
 
@@ -59,7 +59,7 @@ fun ProductItem(
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .clickable {  }
+            .clickable { onProductClick() }
     ) {
         Column(modifier = Modifier.background(Color.White)) {
             Box(modifier = Modifier

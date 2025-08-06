@@ -13,9 +13,10 @@ import androidx.compose.ui.unit.dp
 import com.mobile.petra.data.local.DataSource
 import com.mobile.petra.presentation.views.components.PetraAppBar
 import com.mobile.petra.presentation.views.products.ProductItem
+import com.mobile.petra.router.Navigator
 
 @Composable
-fun ProductListingScreen() {
+fun ProductListingScreen(navigator: Navigator) {
     val products = DataSource().loadProducts()
     Scaffold(
         topBar = { PetraAppBar(title = "Products") }

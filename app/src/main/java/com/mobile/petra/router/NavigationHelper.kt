@@ -18,13 +18,17 @@ class Navigator(private val navController: NavHostController) {
     fun navToSignIn() {
         navController.navigate(Routes.SignIn.route)
     }
-
     fun navToSignUp() {
         navController.navigate(Routes.SignUp.route)
     }
-
     fun navigateUp() {
         navController.navigateUp()
+    }
+    fun navToProductsListing() {
+        navController.navigate(Routes.ProductsListing.route)
+    }
+    fun navToProductDetail() {
+        navController.navigate(Routes.ProductDetail.route)
     }
 
 //

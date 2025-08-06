@@ -7,6 +7,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mobile.petra.presentation.views.auth.sign_in.LoginScreen
 import com.mobile.petra.presentation.views.auth.sign_up.SignUpScreen
+import com.mobile.petra.presentation.views.products.screens.ProductDetailScreen
+import com.mobile.petra.presentation.views.products.screens.ProductListingScreen
 
 @SuppressLint("NewApi")
 @Composable
@@ -29,6 +31,15 @@ fun AppNavigators() {
         composable(Routes.SignUp.route) {
             SignUpScreen(navigation)
         }
+
+        composable(Routes.ProductsListing.route) {
+            ProductListingScreen(navigation)
+        }
+
+        composable(Routes.ProductDetail.route) {
+            ProductDetailScreen()
+        }
+
 
 //        if (appInBackground == 1) {
 //            navigation.navToWelcomeScreen()
