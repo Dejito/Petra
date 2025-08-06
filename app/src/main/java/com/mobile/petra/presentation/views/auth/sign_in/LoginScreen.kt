@@ -80,6 +80,7 @@ fun LoginScreen(navigator: Navigator, modifier: Modifier = Modifier) {
 
             PetraBottomButton(
                 text = "Login",
+                onClick = { navigator.navToProductsListing() },
                 modifier = Modifier.padding(vertical = 24.dp)
             )
 

@@ -29,14 +29,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.mobile.petra.presentation.views.components.PetraAppBar
+import com.mobile.petra.router.Navigator
 
 @Composable
-fun ProductDetailScreen() {
+fun ProductDetailScreen(navigator: Navigator) {
+
     val imageUrl = "https://your-image-url.com/red-hoodie.jpg" // replace with your image URL
     val painter = rememberAsyncImagePainter(imageUrl)
 
     Scaffold(
-            topBar = { PetraAppBar(title = "Products") }
+            topBar = { PetraAppBar(title = "Products", onClick = { navigator.navigateUp() }) }
     ) { padding ->
         Column(
             modifier = Modifier

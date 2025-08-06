@@ -1,5 +1,6 @@
 package com.mobile.petra.presentation.views.products.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -32,7 +33,14 @@ fun ProductListingScreen(navigator: Navigator) {
                 contentPadding = PaddingValues(6.dp)
             ) {
                 items(products){ product ->
-                    ProductItem()
+                    ProductItem(
+                        product = product,
+                        modifier = Modifier.clickable {
+                            //set/add product to state flow before nav'ing
+                            //or use arguments.
+                            navigator.navToProductDetail()
+                        },
+                    )
                 }
             }
         }
