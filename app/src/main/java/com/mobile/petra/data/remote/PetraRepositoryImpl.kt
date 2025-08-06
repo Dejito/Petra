@@ -1,6 +1,7 @@
 package com.mobile.petra.data.remote
 
 import ProductResponse
+import com.mobile.petra.data.model.request.auth.CreateUserReqBody
 import com.mobile.petra.data.model.response.ResponseMessage
 import io.ktor.client.HttpClient
 import io.ktor.client.network.sockets.SocketTimeoutException
@@ -125,9 +126,10 @@ class PetraRepositoryImpl : PetraRepository {
         val rawBody = response.bodyAsText()
         when (response.status) {
             HttpStatusCode.OK, HttpStatusCode.Created -> {
-                    val responseObject = json.decodeFromString<T>(rawBody)
-                    onSuccess(responseObject)
+                val responseObject = json.decodeFromString<T>(rawBody)
+                onSuccess(responseObject)
             }
+
             HttpStatusCode.Accepted -> onSpecialCase?.invoke(response)
             HttpStatusCode.TooManyRequests -> onFailure(tooManyRequestErrorMessage())
             HttpStatusCode.ServiceUnavailable -> {
@@ -138,6 +140,7 @@ class PetraRepositoryImpl : PetraRepository {
                     onFailure(rawBody.ifEmpty { "Service unavailable, please try again later" })
                 }
             }
+
             else -> {
                 try {
                     val errorResponse = json.decodeFromString<ResponseMessage>(rawBody)
@@ -163,28 +166,23 @@ class PetraRepositoryImpl : PetraRepository {
         makeRequest<ProductResponse, Unit>(
             method = HttpMethod.Get,
             endpoint = "products",
-            onSuccess = {
-                onSuccess(it)
-            },
-            onFailure = {
-                onFailure(it)
-            }
+            onSuccess = { onSuccess(it) },
+            onFailure = { onFailure(it) }
         )
     }
 
     override suspend fun createUser(
+        createUserReqBody: CreateUserReqBody,
         onSuccess: () -> Unit,
         onFailure: (error: String) -> Unit
     ) {
-        makeRequest<ProductResponse, Unit>(
+        makeRequest<Unit, CreateUserReqBody>(
             method = HttpMethod.Post,
             endpoint = "users/",
-            onSuccess = {
-                onSuccess()
-            },
-            onFailure = {
-                onFailure(it)
-            }
-        )    }
+            requestBody = createUserReqBody,
+            onSuccess = { onSuccess() },
+            onFailure = { onFailure(it) }
+        )
+    }
 
 }

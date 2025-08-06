@@ -1,6 +1,7 @@
 package com.mobile.petra.data.remote
 
 import ProductResponse
+import com.mobile.petra.data.model.request.auth.CreateUserReqBody
 
 
 interface PetraRepository {
@@ -11,6 +12,7 @@ interface PetraRepository {
     )
 
     suspend fun createUser(
+        createUserReqBody: CreateUserReqBody,
         onSuccess: () -> Unit,
         onFailure: (error: String) -> Unit
     )
