@@ -1,5 +1,6 @@
-package com.mobile.petra.presentation.views.products
+package com.mobile.petra.presentation.views.products.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -12,9 +13,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mobile.petra.data.local.DataSource
 import com.mobile.petra.presentation.views.components.PetraAppBar
+import com.mobile.petra.presentation.views.products.ProductItem
+import com.mobile.petra.router.Navigator
 
 @Composable
-fun ProductListingScreen() {
+fun ProductListingScreen(navigator: Navigator) {
     val products = DataSource().loadProducts()
     Scaffold(
         topBar = { PetraAppBar(title = "Products") }
@@ -27,10 +30,17 @@ fun ProductListingScreen() {
         ) {
             LazyVerticalGrid(
                 columns = GridCells.Adaptive(minSize = 130.dp),
-                contentPadding = PaddingValues(12.dp)
+                contentPadding = PaddingValues(6.dp)
             ) {
                 items(products){ product ->
-                    ProductItem(product)
+                    ProductItem(
+                        product = product,
+                        modifier = Modifier.clickable {
+                            //set/add product to state flow before nav'ing
+                            //or use arguments.
+                            navigator.navToProductDetail()
+                        },
+                    )
                 }
             }
         }

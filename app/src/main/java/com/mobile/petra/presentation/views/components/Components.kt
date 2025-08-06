@@ -281,13 +281,12 @@ fun PetraOutlinedTextField(
 internal fun LoginScreenTextField(
 //    phoneNumber: String,
     pin: String,
-////    showSoftKeyboard: MutableState<Boolean>,
-//    onPhoneNumberTextChanged: (text: String) -> Unit,
+    email: String,
+    onEmailTextChanged: (text: String) -> Unit,
     onPinTextChanged: (text: String) -> Unit,
 //    phoneNumberError: String,
     passwordError: String,
 //    onClickPhoneNumberTextField: () -> Unit,
-    onClickPinTextField: () -> Unit,
     onClickedForgotPin: () -> Unit,
 ) {
     var passwordVisibility by rememberSaveable { mutableStateOf(true) }
@@ -296,6 +295,8 @@ internal fun LoginScreenTextField(
     ) {
 
         PetraOutlinedTextField(
+            value = email,
+            onTextChanged = onEmailTextChanged,
             placeholderText = "Email",
             textFieldColors = TextFieldDefaults.colors().copy(
                 unfocusedContainerColor = Color.White,
@@ -304,68 +305,13 @@ internal fun LoginScreenTextField(
             bottomPadding = 20
         )
 
-//        TitleText(
-//            text = "Phone Number",
-//            fontSize = 16,
-//            color = Color(0xFF787777),
-//            bottomPadding = 6
-//        )
-//        OutlinedTextField(
-//            value = phoneNumber,
-//            onValueChange = onPhoneNumberTextChanged,
-//            placeholder = {
-//                Text(
-//                    "Phone number",
-//                    fontSize = 16.sp,
-//                )
-//            },
-//            isError = phoneNumberError.isNotEmpty(),
-//            shape = RoundedCornerShape(12),
-//
-////            leadingIcon = {
-////                Icon(
-////                    painter = Icons.Filled.,
-////                    contentDescription = "Back button",
-////                    tint = Color(0xFF000000),
-////                    modifier = Modifier
-////                        .size(21.dp)
-////                )
-////            },
-//            keyboardOptions = KeyboardOptions.Default.copy(
-//                imeAction = ImeAction.Done,
-//                keyboardType = KeyboardType.NumberPassword
-//            ),
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .wrapContentHeight()
-//                .clickable {
-//                    onClickPhoneNumberTextField()
-//                }
-//        )
-//        if (phoneNumberError.isNotEmpty()) {
-//            Text(
-//                text = phoneNumberError,
-//                color = MaterialTheme.colorScheme.error,
-//                fontSize = 12.sp,
-//                modifier = Modifier.padding(start = 2.dp)
-//            )
-//        }
-//
-//        TitleText(
-//            text = "PIN",
-//            fontSize = 16,
-//            color = Color(0xFF787777),
-//            topPadding = 16,
-//            bottomPadding = 6
-//        )
-
         OutlinedTextField(
             value = pin,
             enabled = true,
             onValueChange = onPinTextChanged,
             placeholder = {
                 Text(
-                    "PIN",
+                    "Password",
                     fontSize = 16.sp,
                 )
             },
@@ -399,7 +345,7 @@ internal fun LoginScreenTextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .clickable { onClickPinTextField() }
+//                .clickable { onClickPinTextField() }
         )
         if (passwordError.isNotEmpty()) {
             Text(

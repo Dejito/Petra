@@ -2,9 +2,11 @@ package com.mobile.petra.router
 
 sealed class Routes(val route: String) {
 
-    object Home : Routes("home")
-    object SignIn : Routes("/sign-in")
-    object SignUp : Routes("/sign-up")
+    data object Home : Routes("home")
+    data object SignIn : Routes("/sign-in")
+    data object SignUp : Routes("/sign-up")
+    data object ProductsListing : Routes("/products-listing")
+    data object ProductDetail : Routes("/product-details")
 
 
 }

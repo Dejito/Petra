@@ -11,6 +11,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,20 +22,30 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.mobile.petra.R
+import com.mobile.petra.data.model.request.auth.CreateUserReqBody
+import com.mobile.petra.presentation.viewmodel.auth.AuthViewModel
 import com.mobile.petra.presentation.views.components.LoginScreenTextField
 import com.mobile.petra.presentation.views.components.PetraAppBar
 import com.mobile.petra.presentation.views.components.PetraBottomButton
 import com.mobile.petra.presentation.views.components.PetraOutlinedTextField
 import com.mobile.petra.presentation.views.components.TitleText
 import com.mobile.petra.router.Navigator
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun SignUpScreen(
-//    navigator: Navigator
+    navigator: Navigator,
+    authViewModel: AuthViewModel = koinViewModel()
 ){
+    var name by rememberSaveable { mutableStateOf("") }
+    var pin by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
+
+
+
     Scaffold(
         topBar = { PetraAppBar(title = "Sign Up", onClick = {
-//            navigator.navigateUp()
+            navigator.navigateUp()
         }) }
     ) { paddingValues ->
         Column(
@@ -62,6 +76,8 @@ fun SignUpScreen(
                 bottomPadding = 30
             )
             PetraOutlinedTextField(
+                value = name,
+                onTextChanged = { name = it },
                 placeholderText = "Name",
                 textFieldColors = TextFieldDefaults.colors().copy(
                     unfocusedContainerColor = Color.White,
@@ -70,15 +86,25 @@ fun SignUpScreen(
             )
 
             LoginScreenTextField(
-                pin = "",
-                onPinTextChanged = {},
-                onClickPinTextField = {},
+                pin = pin,
+                email = email,
+                onPinTextChanged = { pin = it },
+                onEmailTextChanged = { email = it },
                 onClickedForgotPin = {},
                 passwordError = ""
             )
+
             PetraBottomButton(
                 text = "Sign Up",
-                modifier = Modifier.padding(vertical = 24.dp)
+                modifier = Modifier.padding(vertical = 24.dp),
+                onClick = {
+                    val createUserReqBody = CreateUserReqBody(
+                        name = "Oladeji",
+                        email = "Deerealboy@gmail.com",
+                        password = "555555"
+                    )
+                    authViewModel.createUser(createUserReqBody = createUserReqBody)
+                }
             )
 
             Row(modifier = Modifier.padding(top = 10.dp)) {
@@ -88,7 +114,7 @@ fun SignUpScreen(
                     fontSize = 15,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.clickable {
-//                        navigator.navToSignUp()
+                        navigator.navigateUp()
                     },
                 )
 

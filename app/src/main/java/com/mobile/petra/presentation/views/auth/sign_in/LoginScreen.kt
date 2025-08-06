@@ -10,6 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -24,6 +28,11 @@ import com.mobile.petra.router.Navigator
 
 @Composable
 fun LoginScreen(navigator: Navigator, modifier: Modifier = Modifier) {
+
+    var pin by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
+
+
     Scaffold { paddingValues ->
         Column(
             modifier = modifier
@@ -61,15 +70,17 @@ fun LoginScreen(navigator: Navigator, modifier: Modifier = Modifier) {
 
 
             LoginScreenTextField(
-                pin = "",
-                onPinTextChanged = {},
-                onClickPinTextField = {},
+                pin = pin,
+                email = email,
+                onPinTextChanged = { pin = it },
+                onEmailTextChanged = { email = it },
                 onClickedForgotPin = {},
                 passwordError = ""
             )
 
             PetraBottomButton(
                 text = "Login",
+                onClick = { navigator.navToProductsListing() },
                 modifier = Modifier.padding(vertical = 24.dp)
             )
 
