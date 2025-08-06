@@ -164,14 +164,28 @@ class PetraRepositoryImpl : PetraRepository {
             method = HttpMethod.Get,
             endpoint = "products",
             onSuccess = {
-                println("Got products: ${it.products}")
                 onSuccess(it)
+            },
+            onFailure = {
+                onFailure(it)
+            }
+        )
+    }
+
+    override suspend fun createUser(
+        onSuccess: () -> Unit,
+        onFailure: (error: String) -> Unit
+    ) {
+        makeRequest<ProductResponse, Unit>(
+            method = HttpMethod.Get,
+            endpoint = "products",
+            onSuccess = {
+                onSuccess()
             },
             onFailure = {
                 println("Failed to fetch products: $it")
                 onFailure(it)
             }
-        )
-    }
+        )    }
 
 }

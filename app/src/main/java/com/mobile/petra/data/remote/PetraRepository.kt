@@ -10,5 +10,10 @@ interface PetraRepository {
         onFailure: (error: String) -> Unit
     )
 
+    suspend fun createUser(
+        onSuccess: () -> Unit,
+        onFailure: (error: String) -> Unit
+    )
+
 
 }
