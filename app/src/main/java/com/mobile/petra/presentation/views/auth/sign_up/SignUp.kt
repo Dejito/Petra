@@ -33,7 +33,7 @@ import com.mobile.petra.router.Navigator
 fun SignUpScreen(
     navigator: Navigator
 ){
-    val name by rememberSaveable { mutableStateOf("") }
+    var name by rememberSaveable { mutableStateOf("") }
     var pin by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
 
@@ -73,6 +73,7 @@ fun SignUpScreen(
             )
             PetraOutlinedTextField(
                 value = name,
+                onTextChanged = { name = it },
                 placeholderText = "Name",
                 textFieldColors = TextFieldDefaults.colors().copy(
                     unfocusedContainerColor = Color.White,
