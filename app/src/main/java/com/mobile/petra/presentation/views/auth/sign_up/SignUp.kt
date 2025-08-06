@@ -22,16 +22,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.mobile.petra.R
+import com.mobile.petra.data.model.request.auth.CreateUserReqBody
+import com.mobile.petra.presentation.viewmodel.auth.AuthViewModel
 import com.mobile.petra.presentation.views.components.LoginScreenTextField
 import com.mobile.petra.presentation.views.components.PetraAppBar
 import com.mobile.petra.presentation.views.components.PetraBottomButton
 import com.mobile.petra.presentation.views.components.PetraOutlinedTextField
 import com.mobile.petra.presentation.views.components.TitleText
 import com.mobile.petra.router.Navigator
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun SignUpScreen(
-    navigator: Navigator
+    navigator: Navigator,
+    authViewModel: AuthViewModel = koinViewModel()
 ){
     var name by rememberSaveable { mutableStateOf("") }
     var pin by rememberSaveable { mutableStateOf("") }
@@ -92,7 +96,15 @@ fun SignUpScreen(
 
             PetraBottomButton(
                 text = "Sign Up",
-                modifier = Modifier.padding(vertical = 24.dp)
+                modifier = Modifier.padding(vertical = 24.dp),
+                onClick = {
+                    val createUserReqBody = CreateUserReqBody(
+                        name = "Oladeji",
+                        email = "Deerealboy@gmail.com",
+                        password = "555555"
+                    )
+                    authViewModel.createUser(createUserReqBody = createUserReqBody)
+                }
             )
 
             Row(modifier = Modifier.padding(top = 10.dp)) {

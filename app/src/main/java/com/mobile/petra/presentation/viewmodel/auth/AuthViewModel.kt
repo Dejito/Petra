@@ -18,9 +18,7 @@ class AuthViewModel(private val petraRepository: PetraRepository) : ViewModel() 
 
 
     fun createUser(
-        createUserReqBody: CreateUserReqBody,
-        onSuccess: () -> Unit,
-        onFailure: (String) -> Unit
+        createUserReqBody: CreateUserReqBody
     ) {
         viewModelScope.launch(Dispatchers.IO) {
             _createUserState.emit(CreateUserViewStates.Loading)

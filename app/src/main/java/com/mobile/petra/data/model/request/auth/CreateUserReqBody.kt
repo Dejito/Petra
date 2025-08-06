@@ -9,6 +9,9 @@ data class CreateUserReqBody(
     val name: String,
     @SerialName("email")
     val email: String,
+    @SerialName("password")
+    val password: String,
     @SerialName("avatar")
     val avatar: String? = "https://picsum.photos/800",
+
 )
