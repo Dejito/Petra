@@ -8,7 +8,7 @@ import com.mobile.petra.data.model.request.auth.LoginReqBody
 interface PetraRepository {
 
     suspend fun fetchProduct(
-        onSuccess: (response: ProductResponse) -> Unit,
+        onSuccess: (response: List<ProductResponse>) -> Unit,
         onFailure: (error: String) -> Unit
     )
 

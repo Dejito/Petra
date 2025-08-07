@@ -162,10 +162,10 @@ class PetraRepositoryImpl : PetraRepository {
 
 
     override suspend fun fetchProduct(
-        onSuccess: (response: ProductResponse) -> Unit,
+        onSuccess: (response: List<ProductResponse>) -> Unit,
         onFailure: (error: String) -> Unit
     ) {
-        makeRequest<ProductResponse, Unit>(
+        makeRequest<List<ProductResponse>, Unit>(
             method = HttpMethod.Get,
             endpoint = "products",
             onSuccess = { onSuccess(it) },
