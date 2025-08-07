@@ -54,12 +54,12 @@ fun SignUpScreen(
 
         is CreateUserViewStates.Error -> {
             context.displayToastMessage(createUserViewStates.errorMessage ?: "")
-            authViewModel.setViewStateAsDefault()
+            authViewModel.setCreateViewStateAsDefault()
         }
 
         is CreateUserViewStates.Success -> {
             context.displayToastMessage("Account successfully created!")
-            authViewModel.setViewStateAsDefault()
+            authViewModel.setCreateViewStateAsDefault()
             navigator.navigateUp()
         }
     }

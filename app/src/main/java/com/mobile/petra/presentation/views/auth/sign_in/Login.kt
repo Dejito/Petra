@@ -48,12 +48,12 @@ fun LoginScreen(navigator: Navigator, authViewModel: AuthViewModel = koinViewMod
 
         is LoginUiStates.Error -> {
             context.displayToastMessage(loginUiStates.errorMessage ?: "")
-            authViewModel.setViewStateAsDefault()
+            authViewModel.setLoginViewStateAsDefault()
         }
 
         is LoginUiStates.Success -> {
             context.displayToastMessage("Login successful!")
-            authViewModel.setViewStateAsDefault()
+            authViewModel.setLoginViewStateAsDefault()
             navigator.navToProductsListing()
         }
     }

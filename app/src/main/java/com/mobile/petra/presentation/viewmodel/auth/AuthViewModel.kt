@@ -63,9 +63,15 @@ class AuthViewModel(private val petraRepository: PetraRepository) : ViewModel() 
         }
     }
 
-    fun setViewStateAsDefault() {
+    fun setCreateViewStateAsDefault() {
         viewModelScope.launch {
             _createUserUiState.emit(CreateUserViewStates.Default)
+        }
+    }
+
+    fun setLoginViewStateAsDefault() {
+        viewModelScope.launch {
+            _loginUiState.emit(LoginUiStates.Default)
         }
     }
 
