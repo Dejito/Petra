@@ -48,9 +48,7 @@ fun SignUpScreen(
     when (val createUserViewStates = authViewModel.createUserUiState.collectAsState().value) {
         is CreateUserViewStates.Default -> {}
 
-        is CreateUserViewStates.Loading -> {
-
-        }
+        is CreateUserViewStates.Loading -> {}
 
         is CreateUserViewStates.Error -> {
             context.displayToastMessage(createUserViewStates.errorMessage ?: "")

@@ -1,6 +1,6 @@
 package com.mobile.petra.data.remote
 
-import ProductResponse
+import com.mobile.petra.data.local.ProductResponse
 import com.mobile.petra.data.model.request.auth.CreateUserReqBody
 import com.mobile.petra.data.model.request.auth.LoginReqBody
 

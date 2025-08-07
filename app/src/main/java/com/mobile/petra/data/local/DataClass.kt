@@ -1,7 +1,7 @@
 package com.mobile.petra.data.local
 
 
-data class Product (
+data class ProductResponse (
     var title: String,
     var slug: String,
     var price: Double,
