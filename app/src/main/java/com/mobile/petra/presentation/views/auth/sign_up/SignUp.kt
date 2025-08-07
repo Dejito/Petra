@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.mobile.petra.R
 import com.mobile.petra.data.model.request.auth.CreateUserReqBody
 import com.mobile.petra.presentation.viewmodel.auth.AuthViewModel
-import com.mobile.petra.presentation.viewmodel.auth.CreateUserViewStates
+import com.mobile.petra.presentation.viewmodel.auth.CreateUserUiStates
 import com.mobile.petra.presentation.views.components.LoginScreenTextField
 import com.mobile.petra.presentation.views.components.PetraAppBar
 import com.mobile.petra.presentation.views.components.PetraBottomButton
@@ -46,16 +46,16 @@ fun SignUpScreen(
     SignUp(navigator, authViewModel)
 
     when (val createUserViewStates = authViewModel.createUserUiState.collectAsState().value) {
-        is CreateUserViewStates.Default -> {}
+        is CreateUserUiStates.Default -> {}
 
-        is CreateUserViewStates.Loading -> {}
+        is CreateUserUiStates.Loading -> {}
 
-        is CreateUserViewStates.Error -> {
+        is CreateUserUiStates.Error -> {
             context.displayToastMessage(createUserViewStates.errorMessage ?: "")
             authViewModel.setCreateViewStateAsDefault()
         }
 
-        is CreateUserViewStates.Success -> {
+        is CreateUserUiStates.Success -> {
             context.displayToastMessage("Account successfully created!")
             authViewModel.setCreateViewStateAsDefault()
             navigator.navigateUp()
@@ -131,7 +131,7 @@ fun SignUp(
 
             PetraBottomButton(
                 text = "Sign Up",
-                isLoading = createUserUiStates == CreateUserViewStates.Loading,
+                isLoading = createUserUiStates == CreateUserUiStates.Loading,
                 modifier = Modifier.padding(vertical = 24.dp),
                 onClick = {
                     val createUserReqBody = CreateUserReqBody(

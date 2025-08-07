@@ -7,11 +7,11 @@ package com.mobile.petra.presentation.viewmodel.auth
 //    data class Error(val errorMessage: String?=null) : CardActivationViewState()
 //}
 
-sealed class CreateUserViewStates {
-    data object Default : CreateUserViewStates()
-    data object Loading : CreateUserViewStates()
-    data object Success: CreateUserViewStates()
-    data class Error(val errorMessage: String?=null) : CreateUserViewStates()
+sealed class CreateUserUiStates {
+    data object Default : CreateUserUiStates()
+    data object Loading : CreateUserUiStates()
+    data object Success: CreateUserUiStates()
+    data class Error(val errorMessage: String?=null) : CreateUserUiStates()
 }
 
 sealed class LoginUiStates {
