@@ -10,36 +10,70 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.mobile.petra.R
+import com.mobile.petra.data.model.request.auth.LoginReqBody
+import com.mobile.petra.presentation.viewmodel.auth.AuthViewModel
+import com.mobile.petra.presentation.viewmodel.auth.LoginUiStates
 import com.mobile.petra.presentation.views.components.LoginScreenTextField
 import com.mobile.petra.presentation.views.components.PetraBottomButton
 import com.mobile.petra.presentation.views.components.TitleText
+import com.mobile.petra.presentation.views.components.displayToastMessage
 import com.mobile.petra.router.Navigator
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun LoginScreen(navigator: Navigator) {
+fun LoginScreen(navigator: Navigator, authViewModel: AuthViewModel = koinViewModel()) {
+
+    val context = LocalContext.current
+
+    Login(navigator, authViewModel)
+
+    when (val loginUiStates = authViewModel.loginUiState.collectAsState().value) {
+        is LoginUiStates.Default -> {}
+
+        is LoginUiStates.Loading -> {
+
+        }
+
+        is LoginUiStates.Error -> {
+            context.displayToastMessage(loginUiStates.errorMessage ?: "")
+            authViewModel.setViewStateAsDefault()
+        }
+
+        is LoginUiStates.Success -> {
+            context.displayToastMessage("Login successful!")
+            authViewModel.setViewStateAsDefault()
+            navigator.navToProductsListing()
+        }
+    }
+
 
 }
 
 @Composable
-fun Login(navigator: Navigator, modifier: Modifier = Modifier) {
+fun Login(
+    navigator: Navigator, authViewModel: AuthViewModel
+) {
 
-    var pin by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
+    val loginUiStates = authViewModel.loginUiState.collectAsState().value
 
 
     Scaffold { paddingValues ->
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .padding(paddingValues)
                 .padding(16.dp)
                 .fillMaxSize(),
@@ -74,9 +108,9 @@ fun Login(navigator: Navigator, modifier: Modifier = Modifier) {
 
 
             LoginScreenTextField(
-                pin = pin,
+                pin = password,
                 email = email,
-                onPinTextChanged = { pin = it },
+                onPinTextChanged = { password = it },
                 onEmailTextChanged = { email = it },
                 onClickedForgotPin = {},
                 passwordError = ""
@@ -84,7 +118,14 @@ fun Login(navigator: Navigator, modifier: Modifier = Modifier) {
 
             PetraBottomButton(
                 text = "Login",
-                onClick = { navigator.navToProductsListing() },
+                isLoading = loginUiStates == LoginUiStates.Loading,
+                onClick = {
+                    val loginReqBody = LoginReqBody(
+                        email = email,
+                        password = password
+                    )
+                    authViewModel.login(loginReqBody)
+                },
                 modifier = Modifier.padding(vertical = 24.dp)
             )
 
