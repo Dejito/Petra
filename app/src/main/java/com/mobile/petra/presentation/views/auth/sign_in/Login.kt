@@ -25,6 +25,7 @@ import com.mobile.petra.R
 import com.mobile.petra.data.model.request.auth.LoginReqBody
 import com.mobile.petra.presentation.viewmodel.auth.AuthViewModel
 import com.mobile.petra.presentation.viewmodel.auth.LoginUiStates
+import com.mobile.petra.presentation.viewmodel.product.ProductsViewModel
 import com.mobile.petra.presentation.views.components.LoginScreenTextField
 import com.mobile.petra.presentation.views.components.PetraBottomButton
 import com.mobile.petra.presentation.views.components.TitleText
@@ -63,7 +64,8 @@ fun LoginScreen(navigator: Navigator, authViewModel: AuthViewModel = koinViewMod
 
 @Composable
 fun Login(
-    navigator: Navigator, authViewModel: AuthViewModel
+    navigator: Navigator, authViewModel: AuthViewModel,
+    productsViewModel: ProductsViewModel = koinViewModel()
 ) {
 
     var password by rememberSaveable { mutableStateOf("") }
@@ -125,6 +127,8 @@ fun Login(
                         password = password
                     )
                     authViewModel.login(loginReqBody)
+                    productsViewModel.fetchProducts()
+
                 },
                 modifier = Modifier.padding(vertical = 24.dp)
             )

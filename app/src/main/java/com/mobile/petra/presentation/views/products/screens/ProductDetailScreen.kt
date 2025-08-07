@@ -19,6 +19,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,14 +29,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.mobile.petra.presentation.viewmodel.product.ProductsViewModel
 import com.mobile.petra.presentation.views.components.PetraAppBar
 import com.mobile.petra.router.Navigator
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun ProductDetailScreen(navigator: Navigator) {
+fun ProductDetailScreen(navigator: Navigator, productsViewModel: ProductsViewModel = koinViewModel()) {
 
     val imageUrl = "https://your-image-url.com/red-hoodie.jpg" // replace with your image URL
     val painter = rememberAsyncImagePainter(imageUrl)
+
+    val products = productsViewModel.products.collectAsState().value
+
+    println("products....is ${products?.get(0)?.description}")
 
     Scaffold(
             topBar = { PetraAppBar(title = "Products", onClick = { navigator.navigateUp() }) }
