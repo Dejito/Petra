@@ -41,8 +41,8 @@ fun ProductDetailScreen(navigator: Navigator, productsViewModel: ProductsViewMod
     val painter = rememberAsyncImagePainter(imageUrl)
 
     val products = productsViewModel.products.collectAsState().value
-
-    println("products....is ${products?.get(0)?.description}")
+    val prd = products?.get(1)?.description ?: "null value reached"
+    println("products....is $prd")
 
     Scaffold(
             topBar = { PetraAppBar(title = "Products", onClick = { navigator.navigateUp() }) }
@@ -77,7 +77,7 @@ fun ProductDetailScreen(navigator: Navigator, productsViewModel: ProductsViewMod
                     Spacer(modifier = Modifier.height(8.dp))
                     DetailRow(label = "Amount", value = "$10.0")
                     Spacer(modifier = Modifier.height(8.dp))
-                    DetailRow(label = "Category", value = "updated-category-name-ug")
+                    DetailRow(label = "com.mobile.petra.data.model.response.Category", value = "updated-category-name-ug")
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = "Description",

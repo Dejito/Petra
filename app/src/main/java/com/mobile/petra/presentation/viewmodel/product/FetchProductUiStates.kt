@@ -1,6 +1,6 @@
 package com.mobile.petra.presentation.viewmodel.product
 
-import ProductResponse
+import com.mobile.petra.data.model.response.ProductResponse
 
 
 sealed class FetchProductUiStates {

@@ -123,8 +123,8 @@ fun Login(
                 isLoading = loginUiStates == LoginUiStates.Loading,
                 onClick = {
                     val loginReqBody = LoginReqBody(
-                        email = email,
-                        password = password
+                        email = "d@gmail.com",
+                        password = "555555"
                     )
                     authViewModel.login(loginReqBody)
                     productsViewModel.fetchProducts()

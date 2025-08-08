@@ -1,6 +1,6 @@
 package com.mobile.petra.data.remote
 
-import ProductResponse
+import com.mobile.petra.data.model.response.ProductResponse
 import com.mobile.petra.data.model.request.auth.CreateUserReqBody
 import com.mobile.petra.data.model.request.auth.LoginReqBody
 import com.mobile.petra.data.model.response.ResponseMessage
@@ -26,6 +26,7 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.content.TextContent
 import io.ktor.serialization.kotlinx.json.json
+import io.ktor.utils.io.errors.IOException
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
@@ -109,11 +110,11 @@ class PetraRepositoryImpl : PetraRepository {
             }
             handleResponse(response, onSuccess, onFailure, onSpecialCase)
         } catch (e: SocketTimeoutException) {
-            e.printStackTrace()
+            onFailure(timeOutErrorMessage())
+        } catch (e: IOException) {
             onFailure(internetErrorMessage())
         } catch (e: Exception) {
-            e.printStackTrace()
-            onFailure(e.message.toString())
+            onFailure("Unexpected error try again")
         }
     }
 
@@ -167,8 +168,16 @@ class PetraRepositoryImpl : PetraRepository {
         makeRequest<List<ProductResponse>, Unit>(
             method = HttpMethod.Get,
             endpoint = "products",
-            onSuccess = { onSuccess(it) },
-            onFailure = { onFailure(it) }
+            onSuccess = {
+                onSuccess(it)
+                print("successfully emitted $")
+
+            },
+            onFailure = {
+                onFailure(it)
+                print("failed to emit............... $")
+
+            }
         )
     }
 
@@ -181,8 +190,12 @@ class PetraRepositoryImpl : PetraRepository {
             method = HttpMethod.Post,
             endpoint = "users/",
             requestBody = createUserReqBody,
-            onSuccess = { onSuccess() },
-            onFailure = { onFailure(it) }
+            onSuccess = { onSuccess()
+                println("successfully emitted $it")
+            },
+            onFailure = { onFailure(it)
+                println("failure emitted $it")
+            }
         )
     }
 
@@ -201,3 +214,6 @@ class PetraRepositoryImpl : PetraRepository {
     }
 
 }
+
+
+

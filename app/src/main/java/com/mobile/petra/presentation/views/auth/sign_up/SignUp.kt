@@ -69,9 +69,9 @@ fun SignUp(
     navigator: Navigator,
     authViewModel: AuthViewModel
 ) {
-    var name by rememberSaveable { mutableStateOf("") }
-    var password by rememberSaveable { mutableStateOf("") }
-    var email by rememberSaveable { mutableStateOf("") }
+    var name by rememberSaveable { mutableStateOf("deji") }
+    var password by rememberSaveable { mutableStateOf("555555") }
+    var email by rememberSaveable { mutableStateOf("d@gmail.com") }
     val createUserUiStates = authViewModel.createUserUiState.collectAsState().value
 
 
@@ -135,9 +135,9 @@ fun SignUp(
                 modifier = Modifier.padding(vertical = 24.dp),
                 onClick = {
                     val createUserReqBody = CreateUserReqBody(
-                        name = name,
-                        email = email,
-                        password = password
+                        name = "deji",
+                        email = "d@gmail.com",
+                        password = "555555"
                     )
                     authViewModel.createUser(createUserReqBody = createUserReqBody)
                 }

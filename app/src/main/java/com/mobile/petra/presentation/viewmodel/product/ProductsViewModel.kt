@@ -1,6 +1,6 @@
 package com.mobile.petra.presentation.viewmodel.product
 
-import ProductResponse
+import com.mobile.petra.data.model.response.ProductResponse
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobile.petra.data.remote.PetraRepository
@@ -17,8 +17,11 @@ class ProductsViewModel(private val petraRepository: PetraRepository) : ViewMode
     val fetchProductUiState: StateFlow<FetchProductUiStates> get() = _fetchProductUiState.asStateFlow()
 
 
-    private var _products: MutableStateFlow<List<ProductResponse>?> = MutableStateFlow(null)
+    private val _products: MutableStateFlow<List<ProductResponse>?> = MutableStateFlow<List<ProductResponse>?>(null)
     val products: StateFlow<List<ProductResponse>?> = _products.asStateFlow()
+
+//    private val _businessDetails = MutableStateFlow<List<BusinessDetails>>(emptyList())
+//    val businessDetails: StateFlow<List<BusinessDetails>> = _businessDetails.asStateFlow()
 
 
     fun fetchProducts() {
@@ -26,14 +29,14 @@ class ProductsViewModel(private val petraRepository: PetraRepository) : ViewMode
             _fetchProductUiState.emit(FetchProductUiStates.Loading)
             petraRepository.fetchProduct(
                 onSuccess = { response ->
-                    print("successfully emitted $response")
+                    println("successfully emitted $response")
                     viewModelScope.launch(context = Dispatchers.Main) {
                         _products.value = response
                         _fetchProductUiState.emit(FetchProductUiStates.Success(response))
                     }
                 },
                 onFailure = { error ->
-                    print("failed to emit............... $error")
+                    println("failed to emit............... $error")
                     viewModelScope.launch(context = Dispatchers.Main) {
                         _fetchProductUiState.emit(FetchProductUiStates.Error(error))
                     }

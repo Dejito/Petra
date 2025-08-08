@@ -1,3 +1,5 @@
+package com.mobile.petra.data.model.response
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -55,7 +57,7 @@ data class Category(
 
 
 //@Serializable
-//data class ProductResponse(
+//data class com.mobile.petra.data.model.response.ProductResponse(
 //    @SerialName("id")
 //    val id: Int,
 //    @SerialName("title")
@@ -67,13 +69,13 @@ data class Category(
 //    @SerialName("description")
 //    val description: String,
 //    @SerialName("category")
-//    val category: Category,
+//    val category: com.mobile.petra.data.model.response.Category,
 ////    @SerialName("images")
 ////    val images: String,
 //)
 //
 //@Serializable
-//data class Category(
+//data class com.mobile.petra.data.model.response.Category(
 //    @SerialName("id")
 //    val id: Int,
 //    @SerialName("name")
