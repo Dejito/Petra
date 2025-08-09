@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId = "com.mobile.petra"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.material.icons.extended)
 
     //viewmodel, ktor, http, koin
     implementation(libs.androidx.lifecycle.viewmodel.compose)
@@ -81,6 +82,12 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.koin.compose.viewmodel.v401)
+
+    //others
+    implementation(libs.coil.svg)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.gif)
+    implementation(libs.material.icons.extended)
 
     //test
     testImplementation(libs.junit)

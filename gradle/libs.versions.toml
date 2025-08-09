@@ -8,7 +8,7 @@ espressoCore = "3.6.1"
 kotlinxSerializationJson = "1.7.3"
 ktorClientAndroid = "2.3.12"
 ktorClientContentNegotiation = "2.3.12"
-ktorClientCore = "3.1.1"
+ktorClientCore = "2.3.12"
 ktorClientLogging = "2.3.12"
 ktorSerializationKotlinxJson = "2.3.12"
 lifecycleRuntimeKtx = "2.8.5"
@@ -18,7 +18,10 @@ lifecycleViewmodelCompose = "2.8.5"
 navigationCompose = "2.8.5"
 koin = "4.0.1"
 kotlinxCoroutinesCore = "1.10.1"
-
+material-icons-extended = "1.7.6"
+coilSvg = "2.7.0"
+coil-compose = "2.7.0"
+coil-gif = "2.7.0"
 
 
 [libraries]
@@ -50,7 +53,10 @@ koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", versi
 koin-compose-viewmodel-v401 = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
-
+material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "material-icons-extended" }
+coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coilSvg" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil-compose" }
+coil-gif = { module = "io.coil-kt:coil-gif", version.ref = "coil-gif" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

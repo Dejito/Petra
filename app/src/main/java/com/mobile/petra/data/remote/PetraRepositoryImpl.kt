@@ -1,5 +1,9 @@
 package com.mobile.petra.data.remote
 
+import com.mobile.petra.data.model.response.ProductResponse
+import com.mobile.petra.data.model.request.auth.CreateUserReqBody
+import com.mobile.petra.data.model.request.auth.LoginReqBody
+import com.mobile.petra.data.model.response.ResponseMessage
 import io.ktor.client.HttpClient
 import io.ktor.client.network.sockets.SocketTimeoutException
 import io.ktor.client.plugins.DefaultRequest
@@ -22,10 +26,14 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.content.TextContent
 import io.ktor.serialization.kotlinx.json.json
+import io.ktor.utils.io.errors.IOException
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 
-class PetraRepositoryImpl: PetraRepository {
+class PetraRepositoryImpl : PetraRepository {
+
+    private var baseUrl = "https://api.escuelajs.co/api/v1/"
 
     private val json = Json {
         ignoreUnknownKeys = true
@@ -36,11 +44,13 @@ class PetraRepositoryImpl: PetraRepository {
 
     private lateinit var httpClient: HttpClient
 
-    private suspend fun initHttpClient() {
+
+    private fun initHttpClient() {
 
         httpClient = HttpClient {
             install(DefaultRequest) {
                 headers {
+
                 }
             }
             install(Logging) {
@@ -48,33 +58,29 @@ class PetraRepositoryImpl: PetraRepository {
                 level = LogLevel.ALL
             }
             install(HttpTimeout) {
-                requestTimeoutMillis = 60000
-                connectTimeoutMillis = 60000
-                socketTimeoutMillis = 60000
+                requestTimeoutMillis = 40000
+                connectTimeoutMillis = 40000
+                socketTimeoutMillis = 40000
             }
             install(ContentNegotiation) {
-                json(Json {
-                prettyPrint = true
-                isLenient = true
-                ignoreUnknownKeys = true
-
-                }
-                )
+                json(json)
             }
         }
     }
 
-    private suspend fun ensureHttpClientInitialized() {
+    private fun ensureHttpClientInitialized() {
         if (!this::httpClient.isInitialized) {
             initHttpClient()
         }
     }
 
+//    private suspend fun currentLocation(): Location? = geoLocator.currentLocationOrNull()
+
     private suspend inline fun <reified T : Any, reified R : Any> makeRequest(
         method: HttpMethod,
         endpoint: String,
         requestBody: R? = null,
-//        token: String? = TokenManager.getToken(),
+        token: String? = TokenManager.getToken(),
         additionalHeaders: Map<String, String> = emptyMap(),
         urlParameters: Map<String, String> = emptyMap(),
         pathParameters: Map<String, String> = emptyMap(),
@@ -92,8 +98,8 @@ class PetraRepositoryImpl: PetraRepository {
 
             val response: HttpResponse = httpClient.request {
                 this.method = method
-//                url("$baseUrl$resolvedEndpoint")
-//                token?.let { header("Authorization", "Bearer $it") }
+                url("$baseUrl$resolvedEndpoint")
+                token?.let { header("Authorization", "Bearer $it") }
                 additionalHeaders.forEach { (key, value) -> header(key, value) }
                 urlParameters.forEach { (key, value) -> parameter(key, value) }
 
@@ -104,14 +110,11 @@ class PetraRepositoryImpl: PetraRepository {
             }
             handleResponse(response, onSuccess, onFailure, onSpecialCase)
         } catch (e: SocketTimeoutException) {
-            e.printStackTrace()
-//            onFailure(internetErrorMessage())
+            onFailure(timeOutErrorMessage())
+        } catch (e: IOException) {
+            onFailure(internetErrorMessage())
         } catch (e: Exception) {
-            e.printStackTrace()
-            when {
-//                e.message?.lowercase()?.contains("no address associated") == true -> onFailure(timeOutErrorMessage())
-//                else -> onFailure(checkIfProdIsPresent(e.message.toString()))
-            }
+            onFailure("Unexpected error try again")
         }
     }
 
@@ -125,34 +128,25 @@ class PetraRepositoryImpl: PetraRepository {
         val rawBody = response.bodyAsText()
         when (response.status) {
             HttpStatusCode.OK, HttpStatusCode.Created -> {
-//                if (encryptedCommunication()) {
-//                    handleSuccess(response, onSuccess, onFailure)
-//                } else {
-//                    val decryptedResponse = if (rawBody.startsWith("{") || rawBody.startsWith("[")) {
-//                        rawBody
-//                    } else {
-//                        decryData(rawBody)
-//                    }
-//
-//                    val responseObject = json.decodeFromString<T>(decryptedResponse)
-//                    (responseObject as? LoginResponse)?.token?.let { TokenManager.setToken(it) }
-//                    onSuccess(responseObject)
-//                }
+                val responseObject = json.decodeFromString<T>(rawBody)
+                onSuccess(responseObject)
             }
+
             HttpStatusCode.Accepted -> onSpecialCase?.invoke(response)
             HttpStatusCode.TooManyRequests -> onFailure(tooManyRequestErrorMessage())
-//            HttpStatusCode.ServiceUnavailable -> {
-//                try {
-//                    val errorResponse = json.decodeFromString<ResponseMessage>(rawBody)
-//                    onFailure(errorResponse.message)
-//                } catch (e: Exception) {
-//                    onFailure(rawBody.ifEmpty { "Service unavailable, please try again later" })
-//                }
-//            }
+            HttpStatusCode.ServiceUnavailable -> {
+                try {
+                    val errorResponse = json.decodeFromString<ResponseMessage>(rawBody)
+                    onFailure(errorResponse.message)
+                } catch (e: Exception) {
+                    onFailure(rawBody.ifEmpty { "Service unavailable, please try again later" })
+                }
+            }
+
             else -> {
                 try {
-//                    val errorResponse = json.decodeFromString<ResponseMessage>(rawBody)
-//                    onFailure(errorResponse.message)
+                    val errorResponse = json.decodeFromString<ResponseMessage>(rawBody)
+                    onFailure(errorResponse.message)
                 } catch (e: Exception) {
                     onFailure("Unexpected error: ${response.status.value} - $rawBody")
                 }
@@ -160,19 +154,62 @@ class PetraRepositoryImpl: PetraRepository {
         }
     }
 
-}
+
+    // Utility functions (unchanged)
+    private fun internetErrorMessage() = "Internet connection issue"
+    private fun timeOutErrorMessage() = "Request timed out"
+    private fun tooManyRequestErrorMessage() = "Too many requests"
 
 
-// Utility functions (unchanged)
-private fun internetErrorMessage() = "Internet connection issue"
-private fun timeOutErrorMessage() = "Request timed out"
-private fun tooManyRequestErrorMessage() = "Too many requests"
-private fun checkIfProdIsPresent(message: String): String {
-    return when {
-        message.contains("prod", ignoreCase = true) ||
-                message.contains("kegow-middleware-soidnv4kmq", ignoreCase = true) ->
-            "Unable to process request. Try again."
-
-        else -> "An unexpected error occurred. Please try again."
+    override suspend fun fetchProduct(
+        onSuccess: (response: List<ProductResponse>) -> Unit,
+        onFailure: (error: String) -> Unit
+    ) {
+        makeRequest<List<ProductResponse>, Unit>(
+            method = HttpMethod.Get,
+            endpoint = "products",
+            onSuccess = {
+                onSuccess(it)
+            },
+            onFailure = {
+                onFailure(it)
+            }
+        )
     }
+
+    override suspend fun createUser(
+        createUserReqBody: CreateUserReqBody,
+        onSuccess: () -> Unit,
+        onFailure: (error: String) -> Unit
+    ) {
+        makeRequest<Unit, CreateUserReqBody>(
+            method = HttpMethod.Post,
+            endpoint = "users/",
+            requestBody = createUserReqBody,
+            onSuccess = { onSuccess()
+                println("successfully emitted $it")
+            },
+            onFailure = { onFailure(it)
+                println("failure emitted $it")
+            }
+        )
+    }
+
+    override suspend fun login(
+        loginReqBody: LoginReqBody,
+        onSuccess: () -> Unit,
+        onFailure: (error: String) -> Unit
+    ) {
+        makeRequest<Unit, LoginReqBody>(
+            method = HttpMethod.Post,
+            endpoint = "auth/login",
+            requestBody = loginReqBody,
+            onSuccess = { onSuccess() },
+            onFailure = onFailure
+        )
+    }
+
 }
+
+
+

@@ -1,4 +1,4 @@
-package com.mobile.petra.di
+package com.mobile.petra.presentation.di
 
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
@@ -8,6 +8,6 @@ import org.koin.dsl.includes
 fun initKoin(config : KoinAppDeclaration? = null){
     startKoin {
         includes(config)
-//        modules(sharedKoinModules)
+        modules(sharedKoinModules)
     }
 }
