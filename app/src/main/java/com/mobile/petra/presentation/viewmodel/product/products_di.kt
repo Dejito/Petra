@@ -8,7 +8,7 @@ import org.koin.core.module.dsl.viewModel
 
 val productModule = module {
     single { PetraRepositoryImpl() }
-    single { ProductsViewModel(get()) } // now a singleton, app-wide
+    single { ProductsViewModel(get()) }
 }
 
 

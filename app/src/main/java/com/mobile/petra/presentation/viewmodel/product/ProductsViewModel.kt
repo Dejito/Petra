@@ -11,15 +11,17 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class ProductsViewModel(private val petraRepository: PetraRepositoryImpl): ViewModel() {
+class ProductsViewModel(private val petraRepository: PetraRepositoryImpl) : ViewModel() {
 
     private var _fetchProductUiState: MutableStateFlow<FetchProductUiStates> =
         MutableStateFlow(FetchProductUiStates.Default)
     val fetchProductUiState: StateFlow<FetchProductUiStates> get() = _fetchProductUiState.asStateFlow()
 
-
     private val _products = MutableStateFlow<List<ProductResponse>?>(null)
     val products: StateFlow<List<ProductResponse>?> = _products.asStateFlow()
+
+    private val _product = MutableStateFlow<ProductResponse?>(null)
+    val product: StateFlow<ProductResponse?> = _product.asStateFlow()
 
     fun fetchProducts() {
         viewModelScope.launch(context = Dispatchers.IO) {
@@ -43,4 +45,7 @@ class ProductsViewModel(private val petraRepository: PetraRepositoryImpl): ViewM
         }
     }
 
+    fun setProductIndex(productResponse: ProductResponse) {
+        _product.value = productResponse
+    }
 }
