@@ -5,13 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.mobile.petra.data.model.request.auth.CreateUserReqBody
 import com.mobile.petra.data.model.request.auth.LoginReqBody
 import com.mobile.petra.data.remote.PetraRepository
+import com.mobile.petra.data.remote.PetraRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class AuthViewModel(private val petraRepository: PetraRepository) : ViewModel() {
+class AuthViewModel(private val petraRepository: PetraRepositoryImpl) : ViewModel() {
 
     private var _createUserUiState: MutableStateFlow<CreateUserUiStates> =
         MutableStateFlow(CreateUserUiStates.Default)

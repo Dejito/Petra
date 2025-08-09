@@ -170,13 +170,9 @@ class PetraRepositoryImpl : PetraRepository {
             endpoint = "products",
             onSuccess = {
                 onSuccess(it)
-                print("successfully emitted $")
-
             },
             onFailure = {
                 onFailure(it)
-                print("failed to emit............... $")
-
             }
         )
     }

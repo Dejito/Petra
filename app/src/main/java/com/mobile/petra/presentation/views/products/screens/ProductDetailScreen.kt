@@ -2,6 +2,7 @@ package com.mobile.petra.presentation.views.products.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -25,10 +26,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.mobile.petra.R
 import com.mobile.petra.presentation.viewmodel.product.ProductsViewModel
 import com.mobile.petra.presentation.views.components.PetraAppBar
 import com.mobile.petra.router.Navigator
@@ -37,8 +40,8 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun ProductDetailScreen(navigator: Navigator, productsViewModel: ProductsViewModel = koinViewModel()) {
 
-    val imageUrl = "https://your-image-url.com/red-hoodie.jpg" // replace with your image URL
-    val painter = rememberAsyncImagePainter(imageUrl)
+//    val imageUrl = "https://your-image-url.com/red-hoodie.jpg" // replace with your image URL
+//    val painter = rememberAsyncImagePainter(imageUrl)
 
     val products = productsViewModel.products.collectAsState().value
     val prd = products?.get(1)?.description ?: "null value reached"
@@ -55,7 +58,8 @@ fun ProductDetailScreen(navigator: Navigator, productsViewModel: ProductsViewMod
                 .background(Color.White)
         ) {
             Image(
-                painter = painter,
+//                painter = painter,
+                painter = painterResource(id = R.drawable.brand_logo),
                 contentDescription = "Product Image",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -63,6 +67,10 @@ fun ProductDetailScreen(navigator: Navigator, productsViewModel: ProductsViewMod
                     .fillMaxWidth()
                     .height(250.dp)
                     .clip(RoundedCornerShape(16.dp))
+                    .clickable {
+                        println("length of prod is ........${products?.size}")
+                        productsViewModel.fetchProducts()
+                    }
             )
 
             Card(
