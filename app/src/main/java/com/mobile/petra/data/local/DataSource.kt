@@ -1,5 +1,6 @@
 package com.mobile.petra.data.local
 
+
 class DataSource {
 
 //    fun loadDurations(): List<String> {
@@ -14,7 +15,7 @@ class DataSource {
                 slug = "",
                 price = 2000.0,
                 isFavorite = true,
-                category = Category(id = 1),
+                category = ProdCategory(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Fapple\\_iTunes.jpg?alt=media\\&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Fapple_iTunes.jpg?alt=media&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7)",
@@ -29,7 +30,7 @@ class DataSource {
                 slug = "",
                 price = 3000.0,
                 isFavorite = false,
-                category = Category(id = 1),
+                category = ProdCategory(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Fapple\\_iTunes.jpg?alt=media\\&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Fapple_iTunes.jpg?alt=media&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7)",
@@ -44,7 +45,7 @@ class DataSource {
                 slug = "",
                 price = 4500.0,
                 isFavorite = true,
-                category = Category(id = 1),
+                category = ProdCategory(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Fapple\\_iTunes.jpg?alt=media\\&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Fapple_iTunes.jpg?alt=media&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7)",
@@ -59,7 +60,7 @@ class DataSource {
                 slug = "",
                 price = 5400.0,
                 isFavorite = true,
-                category = Category(id = 1),
+                category = ProdCategory(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Fapple\\_iTunes.jpg?alt=media\\&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Fapple_iTunes.jpg?alt=media&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7)",
@@ -74,7 +75,7 @@ class DataSource {
                 slug = "",
                 price = 4900.0,
                 isFavorite = false,
-                category = Category(id = 1),
+                category = ProdCategory(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Fapple\\_iTunes.jpg?alt=media\\&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Fapple_iTunes.jpg?alt=media&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7)",
@@ -89,7 +90,7 @@ class DataSource {
                 slug = "",
                 price = 8900.0,
                 isFavorite = true,
-                category = Category(id = 1),
+                category = ProdCategory(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Fapple\\_iTunes.jpg?alt=media\\&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Fapple_iTunes.jpg?alt=media&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7)",
@@ -104,7 +105,7 @@ class DataSource {
                 slug = "",
                 price = 1200.0,
                 isFavorite = false,
-                category = Category(id = 1),
+                category = ProdCategory(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Fapple\\_iTunes.jpg?alt=media\\&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Fapple_iTunes.jpg?alt=media&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7)",
@@ -119,7 +120,7 @@ class DataSource {
                 slug = "",
                 price = 2000.0,
                 isFavorite = false,
-                category = Category(id = 1),
+                category = ProdCategory(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Fapple\\_iTunes.jpg?alt=media\\&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Fapple_iTunes.jpg?alt=media&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7)",
@@ -134,7 +135,7 @@ class DataSource {
                 slug = "",
                 price = 2000.0,
                 isFavorite = true,
-                category = Category(id = 1),
+                category = ProdCategory(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Fapple\\_iTunes.jpg?alt=media\\&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Fapple_iTunes.jpg?alt=media&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7)",
@@ -149,7 +150,7 @@ class DataSource {
                 slug = "",
                 price = 9100.0,
                 isFavorite = false,
-                category = Category(id = 1),
+                category = ProdCategory(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Fapple\\_iTunes.jpg?alt=media\\&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Fapple_iTunes.jpg?alt=media&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7)",
@@ -164,7 +165,7 @@ class DataSource {
                 slug = "",
                 price = 2200.0,
                 isFavorite = true,
-                category = Category(id = 1),
+                category = ProdCategory(id = 1),
                 images = listOf(
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Famazon.png?alt=media\\&token=2dd621ba-d831-459c-80fb-dc6049ef6d85](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Famazon.png?alt=media&token=2dd621ba-d831-459c-80fb-dc6049ef6d85)",
                     "https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard\\_logo%2Fapple\\_iTunes.jpg?alt=media\\&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7](https://firebasestorage.googleapis.com/v0/b/blackchinx-e2472.firebasestorage.app/o/giftcard_logo%2Fapple_iTunes.jpg?alt=media&token=fe980cfd-1c1f-4c71-9416-1d25e0b4f8e7)",

@@ -22,6 +22,7 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -57,7 +58,8 @@ import com.mobile.petra.utils.priceFilter
 @Composable
 fun PetraAppBar(
     enabledBackButton: Boolean = true,
-    title: String, elevation: Int = 5,
+    title: String,
+    elevation: Int = 5,
     backgroundColor: Color = Color.Transparent,
     textColor: Color = Color.Black,
     tint: Color = Color.Black,
@@ -366,7 +368,9 @@ internal fun LoginScreenTextField(
 fun PetraBottomButton(
     text: String,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {}, enabled: Boolean = true,
+    isLoading: Boolean = false,
+    onClick: () -> Unit = {},
+    enabled: Boolean = true,
 ) {
     Button(
         modifier = modifier
@@ -381,9 +385,16 @@ fun PetraBottomButton(
             containerColor = MaterialTheme.colorScheme.primary
         )
     ) {
-        Text(
-            text = text,
-            style = MaterialTheme.typography.titleMedium
-        )
+        if (isLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier.size(20.dp),
+                color = MaterialTheme.colorScheme.onPrimary,
+            )
+        } else {
+            Text(
+                text = text,
+                style = MaterialTheme.typography.titleMedium
+            )
+        }
     }
 }
