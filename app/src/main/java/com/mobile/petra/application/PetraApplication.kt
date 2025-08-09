@@ -15,8 +15,4 @@ class PetraApplication : Application() {
             AndroidLogger(Level.DEBUG)
         }
     }
-
-//    private fun AndroidLogger(all: Level) {
-//
-//    }
 }

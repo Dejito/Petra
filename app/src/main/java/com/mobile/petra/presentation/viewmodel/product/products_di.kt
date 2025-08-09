@@ -5,16 +5,17 @@ import org.koin.dsl.module
 
 import org.koin.core.module.dsl.viewModel
 
-//val beneficiaryModule = module {
-//    single { KegowRepositoryImpl() }
-//    viewModel { BeneficiaryViewModel(get())  }
-//}
-
 
 val productModule = module {
     single { PetraRepositoryImpl() }
-    viewModel { ProductsViewModel(get()) }
+    single { ProductsViewModel(get()) } // now a singleton, app-wide
 }
+
+
+//val productModule = module {
+//    single { PetraRepositoryImpl() }
+//    viewModel { ProductsViewModel(get()) }
+//}
 
 //val productModule = module {
 //    singleOf(::PetraRepositoryImpl) { bind<PetraRepositoryImpl>() }
