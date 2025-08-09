@@ -40,12 +40,11 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun ProductDetailScreen(navigator: Navigator, productsViewModel: ProductsViewModel = koinViewModel()) {
 
-//    val imageUrl = "https://your-image-url.com/red-hoodie.jpg" // replace with your image URL
-//    val painter = rememberAsyncImagePainter(imageUrl)
+    val imageUrl = "https://your-image-url.com/red-hoodie.jpg" // replace with your image URL
+    val painter = rememberAsyncImagePainter(imageUrl)
 
-    val products = productsViewModel.products.collectAsState().value
-    val prd = products?.get(1)?.description ?: "null value reached"
-    println("products....is $prd")
+    val product = productsViewModel.product.collectAsState().value
+
 
     Scaffold(
             topBar = { PetraAppBar(title = "Products", onClick = { navigator.navigateUp() }) }
@@ -58,8 +57,8 @@ fun ProductDetailScreen(navigator: Navigator, productsViewModel: ProductsViewMod
                 .background(Color.White)
         ) {
             Image(
-//                painter = painter,
-                painter = painterResource(id = R.drawable.brand_logo),
+                painter = rememberAsyncImagePainter(product?.images?.get(0) ?: ""),
+//                painter = painterResource(id = R.drawable.brand_logo),
                 contentDescription = "Product Image",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -68,8 +67,6 @@ fun ProductDetailScreen(navigator: Navigator, productsViewModel: ProductsViewMod
                     .height(250.dp)
                     .clip(RoundedCornerShape(16.dp))
                     .clickable {
-                        println("length of prod is ........${products?.size}")
-                        productsViewModel.fetchProducts()
                     }
             )
 
@@ -81,11 +78,11 @@ fun ProductDetailScreen(navigator: Navigator, productsViewModel: ProductsViewMod
                 elevation = CardDefaults.cardElevation(4.dp)
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    DetailRow(label = "Item:", value = "Classic Red Pullover Hoodie")
+                    DetailRow(label = "Item:", value = product?.title ?: "")
                     Spacer(modifier = Modifier.height(8.dp))
-                    DetailRow(label = "Amount", value = "$10.0")
+                    DetailRow(label = "Amount", value = "${product?.price}")
                     Spacer(modifier = Modifier.height(8.dp))
-                    DetailRow(label = "com.mobile.petra.data.model.response.Category", value = "updated-category-name-ug")
+                    DetailRow(label = "Category", value = product?.category?.slug ?: "")
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = "Description",
@@ -94,11 +91,7 @@ fun ProductDetailScreen(navigator: Navigator, productsViewModel: ProductsViewMod
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Elevate your casual wardrobe with our Classic Red Pullover Hoodie. "
-                                + "Crafted with a soft cotton blend for ultimate comfort, this vibrant red hoodie "
-                                + "features a kangaroo pocket, adjustable drawstring hood, and ribbed cuffs for a snug fit. "
-                                + "The timeless design ensures easy pairing with jeans or joggers for a relaxed yet stylish look, "
-                                + "making it a versatile addition to your everyday attire.",
+                        text = product?.description ?: "",
                         style = MaterialTheme.typography.bodyMedium,
                         lineHeight = 20.sp
                     )

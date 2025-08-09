@@ -38,9 +38,7 @@ import com.mobile.petra.data.model.response.ProductResponse
 fun ProductItem(
     product: ProductResponse,
     modifier: Modifier,
-//    product: Product,
 ) {
-//    val updatedProduct by viewModel.getProductById(product.id).collectAsState(initial = product)
 
     Card(
         shape = RoundedCornerShape(12.dp),
