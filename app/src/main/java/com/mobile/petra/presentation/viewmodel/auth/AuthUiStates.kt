@@ -12,6 +12,7 @@ sealed class CreateUserUiStates {
     data object Loading : CreateUserUiStates()
     data object Success: CreateUserUiStates()
     data class Error(val errorMessage: String?=null) : CreateUserUiStates()
+
 }
 
 sealed class LoginUiStates {
@@ -19,4 +20,6 @@ sealed class LoginUiStates {
     data object Loading : LoginUiStates()
     data object Success: LoginUiStates()
     data class Error(val errorMessage: String?=null) : LoginUiStates()
+    var emailAddress: String = ""
+    var pin: String = ""
 }

@@ -68,8 +68,9 @@ fun Login(
     productsViewModel: ProductsViewModel = koinViewModel()
 ) {
 
-    var password by rememberSaveable { mutableStateOf("") }
-    var email by rememberSaveable { mutableStateOf("") }
+//    var password by rememberSaveable { mutableStateOf("") }
+//    var email by rememberSaveable { mutableStateOf("") }
+
     val loginUiStates = authViewModel.loginUiState.collectAsState().value
 
 
@@ -110,10 +111,10 @@ fun Login(
 
 
             LoginScreenTextField(
-                pin = password,
-                email = email,
-                onPinTextChanged = { password = it },
-                onEmailTextChanged = { email = it },
+                pin = loginUiStates.pin,
+                email = loginUiStates.emailAddress,
+                onPinTextChanged = { loginUiStates.pin = it },
+                onEmailTextChanged = { loginUiStates.emailAddress = it },
                 onClickedForgotPin = {},
                 passwordError = ""
             )
