@@ -15,11 +15,28 @@ sealed class CreateUserUiStates {
 
 }
 
-sealed class LoginUiStates {
-    data object Default : LoginUiStates()
-    data object Loading : LoginUiStates()
-    data object Success: LoginUiStates()
-    data class Error(val errorMessage: String?=null) : LoginUiStates()
-    var emailAddress: String = ""
-    var pin: String = ""
+sealed class LoginEvents {
+    data object Default : LoginEvents()
+    data object Loading : LoginEvents()
+    data object Success: LoginEvents()
+    data class Error(val errorMessage: String?=null) : LoginEvents()
 }
+
+
+//data class LoginState(
+//    val username: String = "",
+//    val password: String = "",
+//    val isPasswordVisible: Boolean = false,
+//    val isLoading: Boolean = false,
+//    val usernameError: String? = null,
+//    val passwordError: String? = null,
+//    val loginError: String? = null,
+//) : ViewState
+//
+//
+//sealed class LoginEvent : ViewEvent {
+//    data class UserNameChanged(val username: String) : LoginEvent()
+//    data class PasswordChanged(val password: String) : LoginEvent()
+//    data object TogglePasswordVisibility : LoginEvent()
+//    data object LoginClicked : LoginEvent()
+//}

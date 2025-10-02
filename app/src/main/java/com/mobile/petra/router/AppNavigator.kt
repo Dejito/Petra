@@ -18,7 +18,21 @@ fun AppNavigators() {
     val navigation = Navigator(navController)
 
 
-    NavHost(navController, startDestination = Routes.Home.route) {
+    NavHost(
+        navController, startDestination = Routes.Home.route,
+        enterTransition = {
+            fadeIn(animationSpec = tween(500))
+        },
+        exitTransition = {
+            fadeOut(animationSpec = tween(500))
+        },
+        popEnterTransition = {
+            fadeIn(animationSpec = tween(500))
+        },
+        popExitTransition = {
+            fadeOut(animationSpec = tween(500))
+        }
+    ) {
 
         composable(Routes.Home.route) {
             LoginScreen(navigation)

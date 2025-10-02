@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobile.petra.data.model.request.auth.CreateUserReqBody
 import com.mobile.petra.data.model.request.auth.LoginReqBody
-import com.mobile.petra.data.remote.PetraRepository
 import com.mobile.petra.data.remote.PetraRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,9 +18,9 @@ class AuthViewModel(private val petraRepository: PetraRepositoryImpl) : ViewMode
     val createUserUiState: StateFlow<CreateUserUiStates> get() = _createUserUiState.asStateFlow()
 
 
- private var _loginUiState: MutableStateFlow<LoginUiStates> =
-        MutableStateFlow(LoginUiStates.Default)
-    val loginUiState: StateFlow<LoginUiStates> get() = _loginUiState.asStateFlow()
+ private var _loginUiState: MutableStateFlow<LoginEvents> =
+        MutableStateFlow(LoginEvents.Default)
+    val loginUiState: StateFlow<LoginEvents> get() = _loginUiState.asStateFlow()
 
 
     fun createUser(
@@ -49,17 +48,17 @@ class AuthViewModel(private val petraRepository: PetraRepositoryImpl) : ViewMode
         loginReqBody: LoginReqBody
     ) {
         viewModelScope.launch(Dispatchers.IO) {
-            _loginUiState.emit(LoginUiStates.Loading)
+            _loginUiState.emit(LoginEvents.Loading)
             petraRepository.login(
                 loginReqBody,
                 onSuccess = {
                     viewModelScope.launch(context = Dispatchers.Main) {
-                        _loginUiState.emit(LoginUiStates.Success)
+                        _loginUiState.emit(LoginEvents.Success)
                     }
                 },
                 onFailure = { error ->
                     viewModelScope.launch(context = Dispatchers.Main) {
-                        _loginUiState.emit(LoginUiStates.Error(error))
+                        _loginUiState.emit(LoginEvents.Error(error))
                     }
                 }
             )
@@ -74,7 +73,7 @@ class AuthViewModel(private val petraRepository: PetraRepositoryImpl) : ViewMode
 
     fun setLoginViewStateAsDefault() {
         viewModelScope.launch {
-            _loginUiState.emit(LoginUiStates.Default)
+            _loginUiState.emit(LoginEvents.Default)
         }
     }
 

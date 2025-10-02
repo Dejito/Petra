@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.mobile.petra.R
 import com.mobile.petra.data.model.request.auth.LoginReqBody
 import com.mobile.petra.presentation.viewmodel.auth.AuthViewModel
-import com.mobile.petra.presentation.viewmodel.auth.LoginUiStates
+import com.mobile.petra.presentation.viewmodel.auth.LoginEvents
 import com.mobile.petra.presentation.viewmodel.product.ProductsViewModel
 import com.mobile.petra.presentation.views.components.LoginScreenTextField
 import com.mobile.petra.presentation.views.components.PetraBottomButton
@@ -41,18 +41,18 @@ fun LoginScreen(navigator: Navigator, authViewModel: AuthViewModel = koinViewMod
     Login(navigator, authViewModel)
 
     when (val loginUiStates = authViewModel.loginUiState.collectAsState().value) {
-        is LoginUiStates.Default -> {}
+        is LoginEvents.Default -> {}
 
-        is LoginUiStates.Loading -> {
+        is LoginEvents.Loading -> {
 
         }
 
-        is LoginUiStates.Error -> {
+        is LoginEvents.Error -> {
             context.displayToastMessage(loginUiStates.errorMessage ?: "")
             authViewModel.setLoginViewStateAsDefault()
         }
 
-        is LoginUiStates.Success -> {
+        is LoginEvents.Success -> {
             context.displayToastMessage("Login successful!")
             authViewModel.setLoginViewStateAsDefault()
             navigator.navToProductsListing()
@@ -68,8 +68,8 @@ fun Login(
     productsViewModel: ProductsViewModel = koinViewModel()
 ) {
 
-//    var password by rememberSaveable { mutableStateOf("") }
-//    var email by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
 
     val loginUiStates = authViewModel.loginUiState.collectAsState().value
 
@@ -111,17 +111,17 @@ fun Login(
 
 
             LoginScreenTextField(
-                pin = loginUiStates.pin,
-                email = loginUiStates.emailAddress,
-                onPinTextChanged = { loginUiStates.pin = it },
-                onEmailTextChanged = { loginUiStates.emailAddress = it },
+                pin = password,
+                email = email,
+                onPinTextChanged = { password = it },
+                onEmailTextChanged = { email = it },
                 onClickedForgotPin = {},
                 passwordError = ""
             )
 
             PetraBottomButton(
                 text = "Login",
-                isLoading = loginUiStates == LoginUiStates.Loading,
+                isLoading = loginUiStates == LoginEvents.Loading,
                 onClick = {
                     val loginReqBody = LoginReqBody(
                         email = "d@gmail.com",
